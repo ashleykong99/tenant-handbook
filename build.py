@@ -91,7 +91,7 @@ details[open] summary .chev{transform:rotate(90deg)}
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
 .mlabel{font-size:13px;font-weight:600;color:var(--muted);padding:10px 12px 0;display:flex;align-items:center;gap:6px}
-.media video{display:block;width:100%;max-height:70vh;background:#000;margin-top:8px}
+.media .vid{display:block;width:100%;height:360px;border:0;margin-top:8px;background:#000}
 .media img{display:block;width:100%;height:auto;margin-top:8px}
 .media .cap{font-size:13px;color:var(--muted);padding:8px 12px 12px}
 .media .fallback{display:block;font-size:12.5px;color:var(--muted);padding:0 12px 12px}
@@ -131,11 +131,11 @@ def render_media_block(items):
     for m in items:
         t = m["type"]
         if t == "video":
-            url = VIDEO.format(m["id"])
+            preview = f"https://drive.google.com/file/d/{m['id']}/preview"
             fallback = f"https://drive.google.com/file/d/{m['id']}/view"
             out.append(f'''<div class="media">
   <div class="mlabel">🎬 视频 · {esc(m["label"])}</div>
-  <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="{url}"></video>
+  <iframe class="vid" src="{preview}" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
   <div class="fallback">无法播放？<a href="{fallback}" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div>''')
         elif t == "image":
