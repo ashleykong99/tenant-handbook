@@ -69,10 +69,13 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans .t{margin-top:10px}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
+.hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
 /* search */
 .search-wrap{position:relative;margin-top:18px}
-.search-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;opacity:.65}
+.search-input{width:100%;padding:13px 16px 13px 42px;border:1.5px solid var(--border);border-radius:12px;
   font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
 .search-input:focus{border-color:var(--accent)}
 .search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
@@ -124,16 +127,17 @@ footer b{color:var(--ink)}
   <div class="desc">密码锁、家电、水电等</div>
 </div>
 <div class="search-wrap">
+  <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 <div class="note">⚠️ 所有报维修的前提：已阅读本手册并按要求操作后仍不起作用，下一步是拍照片和视频发给普道小南微信 Protique-leasing / WhatsApp 0422329166</div>
 <details id="q1">
   <summary><span class="qicon">Q1</span>我发现有东西坏了，如何报维修？<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">如果是刚入住发现的，有可能是我们已知晓的问题，正在和前租客协商或等师傅排期维修/更换。如果是入住中后期发现的问题（入住 5 个工作日后），可以报告问题给 PM 并【附上照片和视频】。非紧急维修我们会在法律规定 14 天内完成，紧急维修争取两天内完成（紧急/非紧急的定义在于【是否影响最低出租标准】，包括但不限于漏水/爆炸/灶台完全不能用/马桶完全不能用/洗不了澡等，具体可网上查询）。由于澳洲人工贵，有些维修需要租客配合做初步排查，下面逐项列出可能出现的问题。</p></div>
+  <div class="ans"><p class="t">如果是刚入住发现的，有可能是我们已知晓的问题，正在和前租客协商或等师傅排期维修/更换。如果是入住中后期发现的问题（入住 5 个工作日后），可以报告问题给 PM 并<span class="hl">附上照片和视频</span>。非紧急维修我们会在法律规定 14 天内完成，紧急维修争取两天内完成（紧急/非紧急的定义在于<span class="hl">是否影响最低出租标准</span>，包括但不限于漏水/爆炸/灶台完全不能用/马桶完全不能用/洗不了澡等，具体可网上查询）。由于澳洲人工贵，有些维修需要租客配合做初步排查，下面逐项列出可能出现的问题。</p></div>
 </details><details id="q2">
   <summary><span class="qicon">Q2</span>怎么更改密码锁？<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">先用钥匙开门，在【大门打开】的情况下，按照下面的视频和文件一步步完成。初始密码为【1234#】。</p>
+  <div class="ans"><p class="t">先用钥匙开门，在<span class="hl">大门打开</span>的情况下，按照下面的视频和文件一步步完成。初始密码为<span class="hl">1234#</span>。</p>
 <div class="media">
   <div class="mlabel">🎬 视频 · 电子密码设置教程</div>
   <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="https://drive.usercontent.google.com/download?id=10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F"></video>
@@ -163,7 +167,7 @@ footer b{color:var(--ink)}
 </details><details id="q5">
   <summary><span class="qicon">Q5</span>冰箱用不了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">有两种情况。一是冰箱一直响但不影响制冷——这种如果冰箱本身有开关电源，长按电源键即可；没有就把电闸关掉再重启。二是冰箱不制冷/不制冻——最常见原因是风道或出风口被冰堵住。大部分冰箱是单蒸发器 + 风扇循环冷气结构，冷气从蒸发器产生再通过风道吹到不同层，如果蒸发器结霜过多或风道结冰，就会不制冷。</p>
-<p class="t">解决方法：先让冰箱【完全断电 24–36 小时并打开门让冰完全融化】（优先拔电源线，内嵌式无法拔就把电闸关掉），时间到后擦干冰箱内部重新通电，测试是否恢复。</p>
+<p class="t">解决方法：先让冰箱<span class="hl">完全断电 24–36 小时并打开门让冰完全融化</span>（优先拔电源线，内嵌式无法拔就把电闸关掉），时间到后擦干冰箱内部重新通电，测试是否恢复。</p>
 <p class="t">如果冷冻层结冰过多，可能是排水管堵塞，可以尝试清理：</p>
 <div class="media">
   <div class="mlabel">🎬 视频 · 冰箱排水孔清理</div>
@@ -173,7 +177,7 @@ footer b{color:var(--ink)}
 <p class="t">如果未恢复，联系 PM，我们安排维修/更换。</p></div>
 </details><details id="q6">
   <summary><span class="qicon">Q6</span>灶台 / 电磁炉用不了怎么办？<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">电磁炉先检查柜子下方是否通电。灶台在排除已通电和气的前提下分两种情况：第一，开了火之后松按钮火就灭、无法持久——需要来办公室拿一张【砂纸】磨一下白色的小针即可恢复火苗。第二，转动按钮只听到“滋滋”声、只有轻微火苗——这是排气口堵住了，需要来办公室拿一个【文火针】把堵住的口通一下。以上都属于租客使用问题，平时做完饭记得及时清理灶台，不要让油渗入燃气灶，也不要用含酒精的清洁剂清洁。</p>
+  <div class="ans"><p class="t">电磁炉先检查柜子下方是否通电。灶台在排除已通电和气的前提下分两种情况：第一，开了火之后松按钮火就灭、无法持久——需要来办公室拿一张<span class="hl">砂纸</span>磨一下白色的小针即可恢复火苗。第二，转动按钮只听到“滋滋”声、只有轻微火苗——这是排气口堵住了，需要来办公室拿一个<span class="hl">文火针</span>把堵住的口通一下。以上都属于租客使用问题，平时做完饭记得及时清理灶台，不要让油渗入燃气灶，也不要用含酒精的清洁剂清洁。</p>
 <div class="media">
   <div class="mlabel">🖼️ 图片 · 灶台打不着火示意</div>
   <img src="assets/img-cooktop-no-fire.jpg" alt="灶台打不着火示意" loading="lazy">

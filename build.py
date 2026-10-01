@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import html as _html
 import json
+import re
 from content import CATEGORIES, FOOTER, SITE_TITLE, SITE_SUB, VIDEO, PDF_OPEN, DOC_OPEN
 
 CSS = """
@@ -68,10 +69,13 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans .t{margin-top:10px}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
+.hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
 /* search */
 .search-wrap{position:relative;margin-top:18px}
-.search-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;opacity:.65}
+.search-input{width:100%;padding:13px 16px 13px 42px;border:1.5px solid var(--border);border-radius:12px;
   font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
 .search-input:focus{border-color:var(--accent)}
 .search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
@@ -117,6 +121,11 @@ footer b{color:var(--ink)}
 def esc(s):
     return _html.escape(s, quote=False)
 
+def highlight(s):
+    """Escape then wrap 【…】 emphasis markers in a highlighted span."""
+    s = esc(s)
+    return re.sub(r'【([^】]+)】', r'<span class="hl">\1</span>', s)
+
 def render_media_block(items):
     out = []
     for m in items:
@@ -158,12 +167,13 @@ def render_blocks(blocks):
     parts = []
     for b in blocks:
         if "t" in b:
-            parts.append(f'<p class="t">{esc(b["t"])}</p>')
+            parts.append(f'<p class="t">{highlight(b["t"])}</p>')
         if "media" in b:
             parts.append(render_media_block(b["media"]))
     return "\n".join(parts)
 
 SEARCH_BAR = '''<div class="search-wrap">
+  <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>'''

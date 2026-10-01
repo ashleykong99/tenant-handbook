@@ -69,10 +69,13 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans .t{margin-top:10px}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
+.hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
 /* search */
 .search-wrap{position:relative;margin-top:18px}
-.search-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;opacity:.65}
+.search-input{width:100%;padding:13px 16px 13px 42px;border:1.5px solid var(--border);border-radius:12px;
   font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
 .search-input:focus{border-color:var(--accent)}
 .search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
@@ -124,15 +127,16 @@ footer b{color:var(--ink)}
   <div class="desc">退房流程、退押金</div>
 </div>
 <div class="search-wrap">
+  <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 
 <details id="q1">
   <summary><span class="qicon">Q1</span>退房流程是什么？<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">PM 会给你发送 vacate guide，里面有退房注意事项，以及【约退房清洁】。我们合作的清洁，如果包了的项目有问题会返工到底，所以尽量选完整服务，减少来回返工。但清洁和 defect 是分开的——比如地毯被染色是洗不掉的，属于 defect，不是清洁的责任。记得跟清洁拿 receipt 再付清洁费，我们需要清洁的 receipt 才能安排退押金。</p>
-<p class="t">【退房清洁】完成后，搬家前记得不要断电，不然我们没办法检查房屋情况。电在 5 个工作日后可自行切断。</p>
-<p class="t">我们会在 5 个工作日内完成【退房检查】，并把相关房屋问题发给你。你买了的项目出问题可安排清洁免费返工；没买的项目出问题需要你重新清洁或赔偿 defect。</p>
+  <div class="ans"><p class="t">PM 会给你发送 vacate guide，里面有退房注意事项，以及<span class="hl">约退房清洁</span>。我们合作的清洁，如果包了的项目有问题会返工到底，所以尽量选完整服务，减少来回返工。但清洁和 defect 是分开的——比如地毯被染色是洗不掉的，属于 defect，不是清洁的责任。记得跟清洁拿 receipt 再付清洁费，我们需要清洁的 receipt 才能安排退押金。</p>
+<p class="t"><span class="hl">退房清洁</span>完成后，搬家前记得不要断电，不然我们没办法检查房屋情况。电在 5 个工作日后可自行切断。</p>
+<p class="t">我们会在 5 个工作日内完成<span class="hl">退房检查</span>，并把相关房屋问题发给你。你买了的项目出问题可安排清洁免费返工；没买的项目出问题需要你重新清洁或赔偿 defect。</p>
 <p class="t">同时，需要你和新接手房子的人签署一份 consent form，划清房屋责任。</p>
 <p class="t">所有问题解决后，我们会在 10 个工作日内申请解除你扣在 RTBA 的押金。收到 RTBA 的邮件后，点进去自行填写银行卡信息，就可以等押金到账了。退房流程就全部完成了。</p></div>
 </details>
