@@ -68,7 +68,7 @@ CATEGORIES = [
         {"t": "以下是大楼的资料，点开查看："},
         {"media": [
           L("1IlpW0yreJs-_tXFCPHIyS4L5uTUJSGJV", "Aurora 大楼资料（1）"),
-          L("1arMqkT6gzDJ4NIYuzKWFekhts9OyCpFA", "Aurora 大楼资料（2）"),
+          P("1arMqkT6gzDJ4NIYuzKWFekhts9OyCpFA", "assets/cover-aurora-move-in.png", "Aurora Move-In Guide（入住指南 PDF）"),
           L("1W9px54Ie4EgYXnOYltvq3mRTcZ2IbM9r", "Aurora 大楼资料（3）"),
         ]},
       ],
