@@ -1,0 +1,227 @@
+# -*- coding: utf-8 -*-
+import html as _html
+from content import CATEGORIES, FOOTER, SITE_TITLE, SITE_SUB, VIDEO, PDF_OPEN, DOC_OPEN
+
+CSS = """
+:root{
+  --bg:#F5F3F0; --card:#FFFFFF; --ink:#1F2937; --muted:#6B7280;
+  --accent:#D9480F; --accent-soft:#FBE9E2; --green:#1A9E50;
+  --border:#EAE6DF; --shadow:0 1px 3px rgba(31,41,55,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px 40px}
+a{color:var(--accent);text-decoration:none}
+.t,.note,.desc,.sub,.mlabel,.cap{overflow-wrap:anywhere;word-break:break-word}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:10;background:rgba(245,243,240,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--border);
+  padding:12px 16px;display:flex;align-items:center;gap:12px}
+.topbar .back{font-size:15px;font-weight:600;color:var(--ink);
+  display:inline-flex;align-items:center;gap:4px;flex-shrink:0}
+.topbar .back .arr{color:var(--accent);font-size:18px}
+.topbar .ttl{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* hero (landing) */
+.hero{padding:36px 4px 8px}
+.hero .kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:1px;margin-top:6px}
+.hero .sub{font-size:15px;color:var(--muted);margin-top:8px}
+
+/* category grid (landing) */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.cat{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:20px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);
+  transition:transform .12s ease,border-color .12s ease;color:var(--ink)}
+.cat:active{transform:scale(.98)}
+.cat .emoji{font-size:30px;line-height:1}
+.cat .name{font-size:17px;font-weight:700}
+.cat .desc{font-size:12.5px;color:var(--muted);line-height:1.5}
+.cat .n{font-size:12px;color:var(--accent);font-weight:600}
+
+/* note banner */
+.note{margin-top:20px;background:var(--accent-soft);border:1px solid #F3D5C7;
+  border-radius:12px;padding:12px 14px;font-size:13.5px;color:#8A3A12}
+
+/* section header */
+.section-head{padding:20px 4px 4px}
+.section-head .emoji{font-size:34px}
+.section-head h1{font-size:26px;font-weight:800;margin-top:2px}
+.section-head .desc{font-size:14px;color:var(--muted)}
+
+/* accordion */
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  margin-top:12px;box-shadow:var(--shadow);overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;
+  gap:12px;font-size:16.5px;font-weight:700;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary .qicon{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);
+  color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px}
+summary .chev{margin-left:auto;color:var(--muted);font-size:15px;transition:transform .18s ease;flex-shrink:0}
+details[open] summary .chev{transform:rotate(90deg)}
+.ans{padding:2px 18px 18px;font-size:15.5px;color:#374151}
+.ans .t{margin-top:10px}
+.ans .t:first-child{margin-top:0}
+.ans b{font-weight:700}
+
+/* media */
+.media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
+.mlabel{font-size:13px;font-weight:600;color:var(--muted);padding:10px 12px 0;display:flex;align-items:center;gap:6px}
+.media video{display:block;width:100%;max-height:70vh;background:#000;margin-top:8px}
+.media img{display:block;width:100%;height:auto;margin-top:8px}
+.media .cap{font-size:13px;color:var(--muted);padding:8px 12px 12px}
+.media .fallback{display:block;font-size:12.5px;color:var(--muted);padding:0 12px 12px}
+.media .fallback a{font-weight:600}
+
+/* pdf card */
+.media.pdf{display:block;text-decoration:none;color:var(--ink)}
+.media.pdf .cover-wrap{position:relative;margin-top:8px}
+.media.pdf .cover-wrap img{display:block;width:100%;height:auto;margin:0}
+.media.pdf .meta{display:flex;align-items:center;gap:10px;padding:12px}
+.media.pdf .meta .ic{font-size:22px}
+.media.pdf .meta .lbl{font-weight:700;font-size:15px;flex:1}
+.media.pdf .meta .open{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+
+/* link card */
+.media.link{display:flex;align-items:center;gap:10px;padding:14px;text-decoration:none;color:var(--ink)}
+.media.link .ic{font-size:20px}
+.media.link .lbl{font-weight:600;font-size:15px;flex:1}
+.media.link .open{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+
+footer{margin-top:28px;text-align:center;font-size:13px;color:var(--muted);padding:16px 0}
+footer b{color:var(--ink)}
+
+@media(max-width:420px){.cats{grid-template-columns:1fr}}
+"""
+
+def esc(s):
+    return _html.escape(s, quote=False)
+
+def render_media_block(items):
+    out = []
+    for m in items:
+        t = m["type"]
+        if t == "video":
+            url = VIDEO.format(m["id"])
+            fallback = f"https://drive.google.com/file/d/{m['id']}/view"
+            out.append(f'''<div class="media">
+  <div class="mlabel">🎬 视频 · {esc(m["label"])}</div>
+  <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="{url}"></video>
+  <div class="fallback">无法播放？<a href="{fallback}" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
+</div>''')
+        elif t == "image":
+            out.append(f'''<div class="media">
+  <div class="mlabel">🖼️ 图片 · {esc(m["label"])}</div>
+  <img src="{m["src"]}" alt="{esc(m["label"])}" loading="lazy">
+  <div class="cap">{esc(m["label"])}</div>
+</div>''')
+        elif t == "pdf":
+            url = PDF_OPEN.format(m["id"])
+            out.append(f'''<a class="media pdf" href="{url}" target="_blank" rel="noopener">
+  <div class="mlabel">📄 PDF · {esc(m["label"])}</div>
+  <div class="cover-wrap"><img src="{m["cover"]}" alt="{esc(m["label"])}" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">{esc(m["label"])}</span><span class="open">打开 PDF →</span></div>
+</a>''')
+        elif t == "doc":
+            url = DOC_OPEN.format(m["id"])
+            out.append(f'''<a class="media link" href="{url}" target="_blank" rel="noopener">
+  <span class="ic">📝</span><span class="lbl">{esc(m["label"])}</span><span class="open">打开文档 →</span>
+</a>''')
+        elif t == "link":
+            url = PDF_OPEN.format(m["id"])
+            out.append(f'''<a class="media link" href="{url}" target="_blank" rel="noopener">
+  <span class="ic">🔗</span><span class="lbl">{esc(m["label"])}</span><span class="open">打开 →</span>
+</a>''')
+    return "\n".join(out)
+
+def render_blocks(blocks):
+    parts = []
+    for b in blocks:
+        if "t" in b:
+            parts.append(f'<p class="t">{esc(b["t"])}</p>')
+        if "media" in b:
+            parts.append(render_media_block(b["media"]))
+    return "\n".join(parts)
+
+def page(title, body, script="", topbar=None):
+    top = ""
+    if topbar:
+        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">{esc(topbar)}</span></div>'''
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{esc(title)} · {esc(SITE_TITLE)}</title>
+<style>{CSS}</style>
+</head>
+<body>
+{top}
+<div class="wrap">
+{body}
+<footer>— 如有疑问请联系你的 Property Manager —</footer>
+</div>
+{script}
+</body>
+</html>"""
+
+def build_index():
+    cards = []
+    for c in CATEGORIES:
+        n = len(c["questions"])
+        cards.append(f'''<a class="cat" href="{c["id"]}.html">
+  <span class="emoji">{c["emoji"]}</span>
+  <span class="name">{esc(c["title"])}</span>
+  <span class="desc">{esc(c["desc"])}</span>
+  <span class="n">{n} 个问题</span>
+</a>''')
+    body = f'''<div class="hero">
+  <div class="kicker">TENANT HANDBOOK</div>
+  <h1>{esc(SITE_TITLE)}</h1>
+  <div class="sub">{esc(SITE_SUB)}</div>
+</div>
+<div class="cats">{"".join(cards)}</div>'''
+    return page(SITE_TITLE, body)
+
+def build_category(c):
+    qs = []
+    for i, q in enumerate(c["questions"], 1):
+        qs.append(f'''<details>
+  <summary><span class="qicon">Q{i}</span>{esc(q["q"])}<span class="chev">›</span></summary>
+  <div class="ans">{render_blocks(q["blocks"])}</div>
+</details>''')
+    note = ""
+    if c.get("note"):
+        note = f'<div class="note">⚠️ {esc(c["note"])}</div>'
+    body = f'''<div class="section-head">
+  <div class="emoji">{c["emoji"]}</div>
+  <h1>{esc(c["title"])}</h1>
+  <div class="desc">{esc(c["desc"])}</div>
+</div>
+{note}
+{"".join(qs)}'''
+    return page(f'{c["emoji"]} {c["title"]}', body, script=SCRIPT, topbar=c["title"])
+
+SCRIPT = """<script>
+document.querySelectorAll('details').forEach(function(d){
+  d.addEventListener('toggle', function(){
+    if(d.open){
+      document.querySelectorAll('details[open]').forEach(function(o){
+        if(o!==d) o.removeAttribute('open');
+      });
+    }
+  });
+});
+</script>"""
+
+if __name__ == "__main__":
+    import os
+    base = os.path.dirname(os.path.abspath(__file__))
+    open(os.path.join(base, "index.html"), "w", encoding="utf-8").write(build_index())
+    for c in CATEGORIES:
+        open(os.path.join(base, c["id"] + ".html"), "w", encoding="utf-8").write(build_category(c))
+    print("generated: index.html +", ", ".join(c["id"]+".html" for c in CATEGORIES))
