@@ -201,16 +201,30 @@ def build_search_index():
             })
     return "window.SEARCH_INDEX = " + json.dumps(entries, ensure_ascii=False) + ";"
 
-def page(title, body, script="", topbar=None):
+OG_IMAGE = "https://ashleykong99.github.io/tenant-handbook/assets/og-cover.png"
+
+def page(title, body, script="", topbar=None, og_title=None, desc=None):
     top = ""
     if topbar:
         top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">{esc(topbar)}</span></div>'''
+    if og_title is None:
+        og_title = title
+    if desc is None:
+        desc = SITE_SUB
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{esc(title)} · {esc(SITE_TITLE)}</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{esc(SITE_TITLE)}">
+<meta property="og:title" content="{esc(og_title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
 <style>{CSS}</style>
 </head>
 <body>
@@ -262,7 +276,8 @@ def build_category(c):
 {SEARCH_BAR}
 {note}
 {"".join(qs)}'''
-    return page(f'{c["emoji"]} {c["title"]}', body, script=SCRIPT, topbar=c["title"])
+    return page(f'{c["emoji"]} {c["title"]}', body, script=SCRIPT, topbar=c["title"],
+                og_title=f'{c["title"]} · {SITE_TITLE}', desc=c["desc"])
 
 SCRIPT = """<script>
 document.querySelectorAll('details').forEach(function(d){
