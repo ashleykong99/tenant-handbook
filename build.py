@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import html as _html
+import json
 from content import CATEGORIES, FOOTER, SITE_TITLE, SITE_SUB, VIDEO, PDF_OPEN, DOC_OPEN
 
 CSS = """
@@ -67,6 +68,21 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans .t{margin-top:10px}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
+
+/* search */
+.search-wrap{position:relative;margin-top:18px}
+.search-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;
+  font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
+.search-input:focus{border-color:var(--accent)}
+.search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 10px 28px rgba(31,41,55,.14);max-height:60vh;overflow-y:auto;z-index:30}
+.sr-item{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink)}
+.sr-item:last-child{border-bottom:none}
+.sr-item:active{background:var(--accent-soft)}
+.sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
+.sr-q{font-size:14.5px;font-weight:600}
+.sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -147,6 +163,34 @@ def render_blocks(blocks):
             parts.append(render_media_block(b["media"]))
     return "\n".join(parts)
 
+SEARCH_BAR = '''<div class="search-wrap">
+  <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
+  <div class="search-results"></div>
+</div>'''
+
+def flatten_blocks(blocks):
+    parts = []
+    for b in blocks:
+        if "t" in b:
+            parts.append(b["t"])
+        if "media" in b:
+            for m in b["media"]:
+                parts.append(m.get("label", ""))
+    return " ".join(parts)
+
+def build_search_index():
+    entries = []
+    for c in CATEGORIES:
+        for i, q in enumerate(c["questions"], 1):
+            entries.append({
+                "cat": c["title"],
+                "file": c["id"] + ".html",
+                "id": "q%d" % i,
+                "q": q["q"],
+                "t": flatten_blocks(q["blocks"]),
+            })
+    return "window.SEARCH_INDEX = " + json.dumps(entries, ensure_ascii=False) + ";"
+
 def page(title, body, script="", topbar=None):
     top = ""
     if topbar:
@@ -165,6 +209,8 @@ def page(title, body, script="", topbar=None):
 {body}
 <footer>— 如有疑问请联系你的 Property Manager —</footer>
 </div>
+<script src="search-index.js"></script>
+<script src="search.js"></script>
 {script}
 </body>
 </html>"""
@@ -184,13 +230,14 @@ def build_index():
   <h1>{esc(SITE_TITLE)}</h1>
   <div class="sub">{esc(SITE_SUB)}</div>
 </div>
+{SEARCH_BAR}
 <div class="cats">{"".join(cards)}</div>'''
     return page(SITE_TITLE, body)
 
 def build_category(c):
     qs = []
     for i, q in enumerate(c["questions"], 1):
-        qs.append(f'''<details>
+        qs.append(f'''<details id="q{i}">
   <summary><span class="qicon">Q{i}</span>{esc(q["q"])}<span class="chev">›</span></summary>
   <div class="ans">{render_blocks(q["blocks"])}</div>
 </details>''')
@@ -202,6 +249,7 @@ def build_category(c):
   <h1>{esc(c["title"])}</h1>
   <div class="desc">{esc(c["desc"])}</div>
 </div>
+{SEARCH_BAR}
 {note}
 {"".join(qs)}'''
     return page(f'{c["emoji"]} {c["title"]}', body, script=SCRIPT, topbar=c["title"])
@@ -224,4 +272,5 @@ if __name__ == "__main__":
     open(os.path.join(base, "index.html"), "w", encoding="utf-8").write(build_index())
     for c in CATEGORIES:
         open(os.path.join(base, c["id"] + ".html"), "w", encoding="utf-8").write(build_category(c))
-    print("generated: index.html +", ", ".join(c["id"]+".html" for c in CATEGORIES))
+    open(os.path.join(base, "search-index.js"), "w", encoding="utf-8").write(build_search_index())
+    print("generated: index.html +", ", ".join(c["id"]+".html" for c in CATEGORIES), "+ search-index.js")

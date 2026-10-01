@@ -70,6 +70,21 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
 
+/* search */
+.search-wrap{position:relative;margin-top:18px}
+.search-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;
+  font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
+.search-input:focus{border-color:var(--accent)}
+.search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 10px 28px rgba(31,41,55,.14);max-height:60vh;overflow-y:auto;z-index:30}
+.sr-item{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink)}
+.sr-item:last-child{border-bottom:none}
+.sr-item:active{background:var(--accent-soft)}
+.sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
+.sr-q{font-size:14.5px;font-weight:600}
+.sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
 .mlabel{font-size:13px;font-weight:600;color:var(--muted);padding:10px 12px 0;display:flex;align-items:center;gap:6px}
@@ -108,11 +123,15 @@ footer b{color:var(--ink)}
   <h1>维修问题</h1>
   <div class="desc">密码锁、家电、水电等</div>
 </div>
+<div class="search-wrap">
+  <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
+  <div class="search-results"></div>
+</div>
 <div class="note">⚠️ 所有报维修的前提：已阅读本手册并按要求操作后仍不起作用，下一步是拍照片和视频发给普道小南微信 Protique-leasing / WhatsApp 0422329166</div>
-<details>
+<details id="q1">
   <summary><span class="qicon">Q1</span>我发现有东西坏了，如何报维修？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">如果是刚入住发现的，有可能是我们已知晓的问题，正在和前租客协商或等师傅排期维修/更换。如果是入住中后期发现的问题（入住 5 个工作日后），可以报告问题给 PM 并【附上照片和视频】。非紧急维修我们会在法律规定 14 天内完成，紧急维修争取两天内完成（紧急/非紧急的定义在于【是否影响最低出租标准】，包括但不限于漏水/爆炸/灶台完全不能用/马桶完全不能用/洗不了澡等，具体可网上查询）。由于澳洲人工贵，有些维修需要租客配合做初步排查，下面逐项列出可能出现的问题。</p></div>
-</details><details>
+</details><details id="q2">
   <summary><span class="qicon">Q2</span>怎么更改密码锁？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">先用钥匙开门，在【大门打开】的情况下，按照下面的视频和文件一步步完成。初始密码为【1234#】。</p>
 <div class="media">
@@ -125,7 +144,7 @@ footer b{color:var(--ink)}
   <div class="cover-wrap"><img src="assets/cover-samsung-lock.png" alt="Samsung 电子锁表单" loading="lazy"></div>
   <div class="meta"><span class="ic">📄</span><span class="lbl">Samsung 电子锁表单</span><span class="open">打开 PDF →</span></div>
 </a></div>
-</details><details>
+</details><details id="q3">
   <summary><span class="qicon">Q3</span>灯不亮了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">有两种情况。第一种是电路问题，我们会派电工上门检查维修，费用由房东承担。第二种是单纯灯泡不亮，属于租客使用问题——我们可以帮忙联系师傅更换，师傅最低上门费 $80+GST，如果还有别的项目一起，灯泡单算 $40+GST/个，这部分费用由租客承担。你也可以选择自己更换：</p>
 <div class="media">
@@ -133,7 +152,7 @@ footer b{color:var(--ink)}
   <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="https://drive.usercontent.google.com/download?id=15hbjoq_0KgoOCE3WKCJICMTqDTT0JprM"></video>
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/15hbjoq_0KgoOCE3WKCJICMTqDTT0JprM/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div></div>
-</details><details>
+</details><details id="q4">
   <summary><span class="qicon">Q4</span>窗户打不开 / hold 不住怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">照着下图把螺丝拧紧。如果还是不行，咨询公寓前台，前台可以帮忙维修。</p>
 <div class="media">
@@ -141,7 +160,7 @@ footer b{color:var(--ink)}
   <img src="assets/img-window.jpg" alt="窗户螺丝位置示意" loading="lazy">
   <div class="cap">窗户螺丝位置示意</div>
 </div></div>
-</details><details>
+</details><details id="q5">
   <summary><span class="qicon">Q5</span>冰箱用不了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">有两种情况。一是冰箱一直响但不影响制冷——这种如果冰箱本身有开关电源，长按电源键即可；没有就把电闸关掉再重启。二是冰箱不制冷/不制冻——最常见原因是风道或出风口被冰堵住。大部分冰箱是单蒸发器 + 风扇循环冷气结构，冷气从蒸发器产生再通过风道吹到不同层，如果蒸发器结霜过多或风道结冰，就会不制冷。</p>
 <p class="t">解决方法：先让冰箱【完全断电 24–36 小时并打开门让冰完全融化】（优先拔电源线，内嵌式无法拔就把电闸关掉），时间到后擦干冰箱内部重新通电，测试是否恢复。</p>
@@ -152,7 +171,7 @@ footer b{color:var(--ink)}
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/1g6WxgFTSYjQL9rfoyLt0owcR902clmMc/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div>
 <p class="t">如果未恢复，联系 PM，我们安排维修/更换。</p></div>
-</details><details>
+</details><details id="q6">
   <summary><span class="qicon">Q6</span>灶台 / 电磁炉用不了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">电磁炉先检查柜子下方是否通电。灶台在排除已通电和气的前提下分两种情况：第一，开了火之后松按钮火就灭、无法持久——需要来办公室拿一张【砂纸】磨一下白色的小针即可恢复火苗。第二，转动按钮只听到“滋滋”声、只有轻微火苗——这是排气口堵住了，需要来办公室拿一个【文火针】把堵住的口通一下。以上都属于租客使用问题，平时做完饭记得及时清理灶台，不要让油渗入燃气灶，也不要用含酒精的清洁剂清洁。</p>
 <div class="media">
@@ -176,10 +195,10 @@ footer b{color:var(--ink)}
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/1yOCBIX8n1i8qzBpzsAVF3z7-wXl7zOuj/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div>
 <p class="t">如果上述尝试还是无法解决，联系 PM。</p></div>
-</details><details>
+</details><details id="q7">
   <summary><span class="qicon">Q7</span>烤箱灯不亮怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">灯不亮不会影响使用。如果使用不了，会在租客入住前说明。</p></div>
-</details><details>
+</details><details id="q8">
   <summary><span class="qicon">Q8</span>洗碗机用不了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">首先检查柜子下方是否通电，屏幕上会显示错误代码。根据错误代码 + 型号 + 品牌上网搜索即可找到对应的可能性和解决方案。一般最常见的问题是出水口堵住导致不排水，需要把水管盖和滤网取下清理，同时长按开关键 15 秒重启。以上情况属于租客使用问题。</p>
 <div class="media">
@@ -209,7 +228,7 @@ footer b{color:var(--ink)}
   <span class="ic">📝</span><span class="lbl">清理洗碗机</span><span class="open">打开文档 →</span>
 </a>
 <p class="t">如果还是无法解决，联系 PM。</p></div>
-</details><details>
+</details><details id="q9">
   <summary><span class="qicon">Q9</span>洗衣机用不了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">首先检查电源是否通电/开关是否打开，屏幕上会显示错误代码，根据错误代码 + 型号 + 品牌上网搜索。建议先重启：关机、拔电源、等 5–10 分钟再插电启动，有时只是系统需要重置。不启动 → 检查门是否关紧；不脱水 → 检查是否衣物太多/集中一侧；不排水 → 检查过滤器是否堵住（机器底部小门打开即可）或排水管堵塞。以上属于租客使用问题。</p>
 <div class="media">
@@ -243,7 +262,7 @@ footer b{color:var(--ink)}
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/1z7tjaUOePG0p2BEZ7dPLqEYn8AXrSnb3/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div>
 <p class="t">如果还是无法解决，联系 PM。</p></div>
-</details><details>
+</details><details id="q10">
   <summary><span class="qicon">Q10</span>烘干机用不了怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">首先检查电源是否通电/开关是否打开，屏幕上会显示错误代码。建议先重启：关机、拔电源、等 5–10 分钟再插电。不启动 → 检查门是否关紧；不脱水 → 检查衣物是否太多或排水箱满了（顶部抽屉抽出即可）；不排水 → 检查滤网是否堵塞（胶圈连接处底部或侧面），取出滤网清理绒毛再试。以上属于租客使用问题。如果还是无法解决，联系 PM。</p>
 <a class="media pdf" href="https://drive.google.com/file/d/1wpSqOSXvgzWKwaHOw7JQvMDw7t53Q5yI/view" target="_blank" rel="noopener">
@@ -256,7 +275,7 @@ footer b{color:var(--ink)}
   <div class="cover-wrap"><img src="assets/cover-miele-dryer-manual.png" alt="Miele 烘干机用户手册（英文）" loading="lazy"></div>
   <div class="meta"><span class="ic">📄</span><span class="lbl">Miele 烘干机用户手册（英文）</span><span class="open">打开 PDF →</span></div>
 </a></div>
-</details><details>
+</details><details id="q11">
   <summary><span class="qicon">Q11</span>洗手池不下水怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">一般都为头发缠/堵住了，属于租客使用问题——切记不要在水池洗头！需要买一瓶 Drano（橘色大瓶的）：</p>
 <a class="media pdf" href="https://drive.google.com/file/d/1eS0Tf8Zw1bi0DwT9hVaC0IhK2RSoplzX/view" target="_blank" rel="noopener">
@@ -265,10 +284,10 @@ footer b{color:var(--ink)}
   <div class="meta"><span class="ic">📄</span><span class="lbl">下水道堵塞处理</span><span class="open">打开 PDF →</span></div>
 </a>
 <p class="t">在水池干燥的情况下倒入半瓶，等 12 小时后用热水冲洗几分钟即可。如果还是无法解决，联系 PM。</p></div>
-</details><details>
+</details><details id="q12">
   <summary><span class="qicon">Q12</span>马桶漏水 / 不冲洗怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">先把马桶盖打开，把水阀开关关掉，阻止进一步漏水。之后联系 PM 解决。</p></div>
-</details><details>
+</details><details id="q13">
   <summary><span class="qicon">Q13</span>马桶盖错位？<span class="chev">›</span></summary>
   <div class="ans"><div class="media">
   <div class="mlabel">🎬 视频 · 马桶开盖</div>
@@ -285,7 +304,7 @@ footer b{color:var(--ink)}
   <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="https://drive.usercontent.google.com/download?id=14Cd9tVAQ3oTwm0lyQl7L0AUiqYXjisBk"></video>
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/14Cd9tVAQ3oTwm0lyQl7L0AUiqYXjisBk/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div></div>
-</details><details>
+</details><details id="q14">
   <summary><span class="qicon">Q14</span>水龙头掉落？/ 洗手盆按钮起不来怎么办？<span class="chev">›</span></summary>
   <div class="ans"><div class="media">
   <div class="mlabel">🎬 视频 · 水龙头处理</div>
@@ -297,7 +316,7 @@ footer b{color:var(--ink)}
   <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="https://drive.usercontent.google.com/download?id=1iNE2jtgXa6JO76-Mw5oDUHaFR5uqeSua"></video>
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/1iNE2jtgXa6JO76-Mw5oDUHaFR5uqeSua/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div></div>
-</details><details>
+</details><details id="q15">
   <summary><span class="qicon">Q15</span>空调不工作怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">如果面板出现错误代码，需要联系前台重启主机。必要时清理空调滤网：</p>
 <div class="media">
@@ -305,7 +324,7 @@ footer b{color:var(--ink)}
   <video controls playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" src="https://drive.usercontent.google.com/download?id=1ndRNfxaL47Gd6fEthOzQwarDRC_TQTo_"></video>
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/1ndRNfxaL47Gd6fEthOzQwarDRC_TQTo_/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div></div>
-</details><details>
+</details><details id="q16">
   <summary><span class="qicon">Q16</span>床架掉落怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">根据修复视频指导操作：</p>
 <div class="media">
@@ -314,7 +333,7 @@ footer b{color:var(--ink)}
   <div class="fallback">无法播放？<a href="https://drive.google.com/file/d/1ImyJ3kPlclJmEN_Th_kA8Ak_9-yrZKEc/view" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
 </div>
 <p class="t">如果还是不行，联系 PM。</p></div>
-</details><details>
+</details><details id="q17">
   <summary><span class="qicon">Q17</span>烟雾报警器 smoke alarm 不工作 / 一直在响？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">可能没电，需要换电池或重置：</p>
 <div class="media">
@@ -330,6 +349,8 @@ footer b{color:var(--ink)}
 </details>
 <footer>— 如有疑问请联系你的 Property Manager —</footer>
 </div>
+<script src="search-index.js"></script>
+<script src="search.js"></script>
 <script>
 document.querySelectorAll('details').forEach(function(d){
   d.addEventListener('toggle', function(){

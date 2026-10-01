@@ -70,6 +70,21 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
 
+/* search */
+.search-wrap{position:relative;margin-top:18px}
+.search-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;
+  font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
+.search-input:focus{border-color:var(--accent)}
+.search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 10px 28px rgba(31,41,55,.14);max-height:60vh;overflow-y:auto;z-index:30}
+.sr-item{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink)}
+.sr-item:last-child{border-bottom:none}
+.sr-item:active{background:var(--accent-soft)}
+.sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
+.sr-q{font-size:14.5px;font-weight:600}
+.sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
 .mlabel{font-size:13px;font-weight:600;color:var(--muted);padding:10px 12px 0;display:flex;align-items:center;gap:6px}
@@ -108,8 +123,12 @@ footer b{color:var(--ink)}
   <h1>退房</h1>
   <div class="desc">退房流程、退押金</div>
 </div>
+<div class="search-wrap">
+  <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
+  <div class="search-results"></div>
+</div>
 
-<details>
+<details id="q1">
   <summary><span class="qicon">Q1</span>退房流程是什么？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">PM 会给你发送 vacate guide，里面有退房注意事项，以及【约退房清洁】。我们合作的清洁，如果包了的项目有问题会返工到底，所以尽量选完整服务，减少来回返工。但清洁和 defect 是分开的——比如地毯被染色是洗不掉的，属于 defect，不是清洁的责任。记得跟清洁拿 receipt 再付清洁费，我们需要清洁的 receipt 才能安排退押金。</p>
 <p class="t">【退房清洁】完成后，搬家前记得不要断电，不然我们没办法检查房屋情况。电在 5 个工作日后可自行切断。</p>
@@ -119,6 +138,8 @@ footer b{color:var(--ink)}
 </details>
 <footer>— 如有疑问请联系你的 Property Manager —</footer>
 </div>
+<script src="search-index.js"></script>
+<script src="search.js"></script>
 <script>
 document.querySelectorAll('details').forEach(function(d){
   d.addEventListener('toggle', function(){
