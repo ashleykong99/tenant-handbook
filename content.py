@@ -67,9 +67,9 @@ CATEGORIES = [
       "blocks": [
         {"t": "以下是大楼的资料，点开查看："},
         {"media": [
-          L("1IlpW0yreJs-_tXFCPHIyS4L5uTUJSGJV", "Aurora 大楼资料（1）"),
+          IMG("assets/img-aurora-contact.jpg", "大楼联系方式 Contact"),
           P("1arMqkT6gzDJ4NIYuzKWFekhts9OyCpFA", "assets/cover-aurora-move-in.png", "Aurora Move-In Guide（入住指南 PDF）"),
-          L("1W9px54Ie4EgYXnOYltvq3mRTcZ2IbM9r", "Aurora 大楼资料（3）"),
+          P("1W9px54Ie4EgYXnOYltvq3mRTcZ2IbM9r", "assets/cover-aurora-oc-rule.png", "Aurora OC Rule（大楼规章制度 PDF）"),
         ]},
       ],
     },
