@@ -71,6 +71,14 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans b{font-weight:700}
 .hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
   box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ans .h3{font-weight:700;margin-top:16px;font-size:15.5px;color:var(--ink)}
+.ans ul.bl{margin:8px 0 0;padding-left:20px}
+.ans ul.bl li{margin:5px 0}
+.ans ul.bl li::marker{color:var(--accent)}
+.ans table.tb{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;background:#fff}
+.ans table.tb th,.ans table.tb td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+.ans table.tb th{background:var(--accent-soft);font-weight:700}
+.ans table.tb td{word-break:break-word}
 
 /* search */
 .search-wrap{position:relative;margin-top:18px}
@@ -163,11 +171,31 @@ def render_media_block(items):
 </a>''')
     return "\n".join(out)
 
+def render_list(items):
+    lis = "\n".join(f'<li>{highlight(it)}</li>' for it in items)
+    return f'<ul class="bl">{lis}</ul>'
+
+def render_table(tbl):
+    header = tbl.get("header", [])
+    rows = tbl.get("rows", [])
+    parts = []
+    if header:
+        parts.append('<tr>' + "".join(f'<th>{highlight(h)}</th>' for h in header) + '</tr>')
+    for r in rows:
+        parts.append('<tr>' + "".join(f'<td>{highlight(c)}</td>' for c in r) + '</tr>')
+    return '<table class="tb">' + "".join(parts) + '</table>'
+
 def render_blocks(blocks):
     parts = []
     for b in blocks:
         if "t" in b:
             parts.append(f'<p class="t">{highlight(b["t"])}</p>')
+        if "h" in b:
+            parts.append(f'<p class="h3">{highlight(b["h"])}</p>')
+        if "list" in b:
+            parts.append(render_list(b["list"]))
+        if "table" in b:
+            parts.append(render_table(b["table"]))
         if "media" in b:
             parts.append(render_media_block(b["media"]))
     return "\n".join(parts)

@@ -79,6 +79,14 @@ details[open] summary .chev{transform:rotate(90deg)}
 .ans b{font-weight:700}
 .hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
   box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ans .h3{font-weight:700;margin-top:16px;font-size:15.5px;color:var(--ink)}
+.ans ul.bl{margin:8px 0 0;padding-left:20px}
+.ans ul.bl li{margin:5px 0}
+.ans ul.bl li::marker{color:var(--accent)}
+.ans table.tb{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;background:#fff}
+.ans table.tb th,.ans table.tb td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+.ans table.tb th{background:var(--accent-soft);font-weight:700}
+.ans table.tb td{word-break:break-word}
 
 /* search */
 .search-wrap{position:relative;margin-top:18px}
@@ -139,7 +147,12 @@ footer b{color:var(--ink)}
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
-<div class="cats"><a class="cat" href="inspection.html">
+<div class="cats"><a class="cat" href="notice.html">
+  <span class="emoji">📋</span>
+  <span class="name">入住须知</span>
+  <span class="desc">前台、门禁、快递、设施、搬家、垃圾</span>
+  <span class="n">10 个问题</span>
+</a><a class="cat" href="inspection.html">
   <span class="emoji">🔍</span>
   <span class="name">入住检查</span>
   <span class="desc">家具、清洁、换家具</span>
