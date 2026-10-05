@@ -706,5 +706,5 @@ CATEGORIES = [
 ]
 
 FOOTER = "如有疑问请联系你的 Property Manager"
-SITE_TITLE = "租客使用手册"
+SITE_TITLE = "Aurora极光 × 普道地产租客使用手册"
 SITE_SUB = "入住前请先阅读，遇到问题先查这里，再联系 Property Manager"
