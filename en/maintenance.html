@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>🔧 Maintenance · Aurora × Protique Real Estate Tenant Handbook</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurora × Protique Real Estate Tenant Handbook">
+<meta property="og:title" content="Maintenance · Aurora × Protique Real Estate Tenant Handbook">
+<meta property="og:description" content="Door locks, appliances, plumbing &amp; electrical">
+<meta property="og:image" content="https://ashleykong99.github.io/tenant-handbook/assets/og-cover-en.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#F5F3F0; --card:#FFFFFF; --ink:#1F2937; --muted:#6B7280;
+  --accent:#D9480F; --accent-soft:#FBE9E2; --green:#1A9E50;
+  --border:#EAE6DF; --shadow:0 1px 3px rgba(31,41,55,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px 40px}
+a{color:var(--accent);text-decoration:none}
+.t,.note,.desc,.sub,.mlabel,.cap{overflow-wrap:anywhere;word-break:break-word}
+
+/* lang toggle */
+.langbar{text-align:right;padding:10px 2px 0;font-size:13px;font-weight:600}
+.langbar a{color:var(--muted)}
+.langbar a.on{color:var(--accent);font-weight:800}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:10;background:rgba(245,243,240,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--border);
+  padding:12px 16px;display:flex;align-items:center;gap:12px}
+.topbar .back{font-size:15px;font-weight:600;color:var(--ink);
+  display:inline-flex;align-items:center;gap:4px;flex-shrink:0}
+.topbar .back .arr{color:var(--accent);font-size:18px}
+.topbar .ttl{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .lang{font-size:13px;font-weight:700;color:var(--accent);margin-left:auto;flex-shrink:0}
+
+/* hero (landing) */
+.hero{padding:28px 4px 8px}
+.hero .kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-top:6px;line-height:1.25}
+.hero .sub{font-size:15px;color:var(--muted);margin-top:8px}
+
+/* category grid (landing) */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.cat{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:20px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);
+  transition:transform .12s ease,border-color .12s ease;color:var(--ink)}
+.cat:active{transform:scale(.98)}
+.cat .emoji{font-size:30px;line-height:1}
+.cat .name{font-size:17px;font-weight:700}
+.cat .desc{font-size:12.5px;color:var(--muted);line-height:1.5}
+.cat .n{font-size:12px;color:var(--accent);font-weight:600}
+
+/* note banner */
+.note{margin-top:20px;background:var(--accent-soft);border:1px solid #F3D5C7;
+  border-radius:12px;padding:12px 14px;font-size:13.5px;color:#8A3A12}
+
+/* section header */
+.section-head{padding:20px 4px 4px}
+.section-head .emoji{font-size:34px}
+.section-head h1{font-size:26px;font-weight:800;margin-top:2px}
+.section-head .desc{font-size:14px;color:var(--muted)}
+
+/* accordion */
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  margin-top:12px;box-shadow:var(--shadow);overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;
+  gap:12px;font-size:16.5px;font-weight:700;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary .qicon{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);
+  color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px}
+summary .chev{margin-left:auto;color:var(--muted);font-size:15px;transition:transform .18s ease;flex-shrink:0}
+details[open] summary .chev{transform:rotate(90deg)}
+.ans{padding:2px 18px 18px;font-size:15.5px;color:#374151}
+.ans .t{margin-top:10px}
+.ans .t:first-child{margin-top:0}
+.ans b{font-weight:700}
+.hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ans .h3{font-weight:700;margin-top:16px;font-size:15.5px;color:var(--ink)}
+.ans ul.bl{margin:8px 0 0;padding-left:20px}
+.ans ul.bl li{margin:5px 0}
+.ans ul.bl li::marker{color:var(--accent)}
+.ans table.tb{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;background:#fff}
+.ans table.tb th,.ans table.tb td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+.ans table.tb th{background:var(--accent-soft);font-weight:700}
+.ans table.tb td{word-break:break-word}
+
+/* search */
+.search-wrap{position:relative;margin-top:18px}
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;opacity:.65}
+.search-input{width:100%;padding:13px 16px 13px 42px;border:1.5px solid var(--border);border-radius:12px;
+  font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
+.search-input:focus{border-color:var(--accent)}
+.search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 10px 28px rgba(31,41,55,.14);max-height:60vh;overflow-y:auto;z-index:30}
+.sr-item{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink)}
+.sr-item:last-child{border-bottom:none}
+.sr-item:active{background:var(--accent-soft)}
+.sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
+.sr-q{font-size:14.5px;font-weight:600}
+.sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+
+/* media */
+.media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
+.mlabel{font-size:13px;font-weight:600;color:var(--muted);padding:10px 12px 0;display:flex;align-items:center;gap:6px}
+.media .vid{display:block;width:100%;height:360px;border:0;margin-top:8px;background:#000}
+.media img{display:block;width:100%;height:auto;margin-top:8px}
+.media .cap{font-size:13px;color:var(--muted);padding:8px 12px 12px}
+.media .fallback{display:block;font-size:12.5px;color:var(--muted);padding:0 12px 12px}
+.media .fallback a{font-weight:600}
+
+/* pdf card */
+.media.pdf{display:block;text-decoration:none;color:var(--ink)}
+.media.pdf .cover-wrap{position:relative;margin-top:8px}
+.media.pdf .cover-wrap img{display:block;width:100%;height:auto;margin:0}
+.media.pdf .meta{display:flex;align-items:center;gap:10px;padding:12px}
+.media.pdf .meta .ic{font-size:22px}
+.media.pdf .meta .lbl{font-weight:700;font-size:15px;flex:1}
+.media.pdf .meta .open{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+
+/* link card */
+.media.link{display:flex;align-items:center;gap:10px;padding:14px;text-decoration:none;color:var(--ink)}
+.media.link .ic{font-size:20px}
+.media.link .lbl{font-weight:600;font-size:15px;flex:1}
+.media.link .open{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+
+footer{margin-top:28px;text-align:center;font-size:13px;color:var(--muted);padding:16px 0}
+footer b{color:var(--ink)}
+
+@media(max-width:420px){.cats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> Home</a><span class="ttl">Maintenance</span><a class="lang" href="../index.html">中文</a></div>
+<div class="wrap">
+<div class="langbar"><a href="../index.html">中文</a></div>
+<div class="section-head">
+  <div class="emoji">🔧</div>
+  <h1>Maintenance</h1>
+  <div class="desc">Door locks, appliances, plumbing &amp; electrical</div>
+</div>
+<div class="search-wrap" data-empty="No matching questions — try another keyword">
+  <span class="search-ico">🔍</span>
+  <input class="search-input" type="search" placeholder="Search: fridge / bond / key / sublet…" autocomplete="off">
+  <div class="search-results"></div>
+</div>
+<div class="note">⚠️ Before reporting maintenance: make sure you have read this handbook and followed the instructions. If it still doesn't work, take photos and videos and send them to Protique-leasing on WeChat / WhatsApp 0422329166</div>
+<details id="q1">
+  <summary><span class="qicon">Q1</span>Something is broken — how do I report it?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">If discovered just after moving in, we may already be aware of it and are negotiating with the previous tenant or waiting for a tradesperson. If discovered later (after 5 working days), report it to the PM with <span class="hl">photos and videos</span>. Non-urgent repairs are completed within the legal 14 days; urgent repairs are aimed to be done within two days (urgent vs non-urgent depends on <span class="hl">whether minimum rental standards are affected</span>, including but not limited to leaks, explosions, cooktop completely unusable, toilet completely unusable, unable to shower, etc. — search online for details). As Australian labour is expensive and some repairs need tenant cooperation for initial checks, common issues are listed below.</p></div>
+</details><details id="q2">
+  <summary><span class="qicon">Q2</span>How do I change the digital door lock?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Open the door with the key first, and with the <span class="hl">door open</span>, follow the video and file below step by step. The initial password is <span class="hl">1234#</span>.</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · Digital lock setup video</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<a class="media pdf" href="https://drive.google.com/file/d/19ld0-78T3KH2O7qqolz6wZoATfWT8N5C/view" target="_blank" rel="noopener">
+  <div class="mlabel">📄 PDF · Samsung Digital Locking Form</div>
+  <div class="cover-wrap"><img src="../assets/cover-samsung-lock.png" alt="Samsung Digital Locking Form" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">Samsung Digital Locking Form</span><span class="open">Open PDF →</span></div>
+</a></div>
+</details><details id="q3">
+  <summary><span class="qicon">Q3</span>A light isn't working — what do I do?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Two cases. First, an electrical circuit problem — we send an electrician, paid by the landlord. Second, just a blown bulb — a tenant usage issue. We can help arrange a tradesperson; minimum call-out $80+GST, or $40+GST per bulb if combined with other items — this cost is borne by the tenant. You can also replace it yourself:</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · Downlight change video</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/15hbjoq_0KgoOCE3WKCJICMTqDTT0JprM/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/15hbjoq_0KgoOCE3WKCJICMTqDTT0JprM/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div></div>
+</details><details id="q4">
+  <summary><span class="qicon">Q4</span>A window won't open / won't stay open?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Tighten the screws shown in the image below. If it still doesn't work, ask the building front desk — they can help repair it.</p>
+<div class="media">
+  <div class="mlabel">🖼️ Image · Window screw location</div>
+  <img src="../assets/img-window.jpg" alt="Window screw location" loading="lazy">
+  <div class="cap">Window screw location</div>
+</div></div>
+</details><details id="q5">
+  <summary><span class="qicon">Q5</span>The fridge isn't working — what do I do?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Two cases. First, the fridge hums but doesn't cool properly — if it has a power switch, long-press it; otherwise turn the breaker off and on. Second, the fridge doesn't cool/freeze — most commonly the air duct or outlet is blocked by ice. Most fridges are single-evaporator with a fan circulating cold air; if the evaporator frosts up or the duct freezes, it stops cooling.</p>
+<p class="t">Solution: first <span class="hl">power off completely for 24–36 hours with the door open to let the ice fully melt</span> (unplug if possible; if built-in and can't unplug, turn off the breaker), then dry the inside and power back on to test.</p>
+<p class="t">If the freezer frosts up heavily, the drain may be blocked — try cleaning it:</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · Fridge drain clearing video</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1g6WxgFTSYjQL9rfoyLt0owcR902clmMc/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1g6WxgFTSYjQL9rfoyLt0owcR902clmMc/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<p class="t">If it doesn't recover, contact the PM and we'll arrange repair/replacement.</p></div>
+</details><details id="q6">
+  <summary><span class="qicon">Q6</span>The cooktop / induction cooktop isn't working?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">For induction, first check power under the cabinet. For gas cooktops (after confirming power and gas), two cases: first, the flame goes out when you release the knob — get a piece of <span class="hl">sandpaper</span> from the office and sand the small white pin to restore the flame. Second, you only hear a 'hissing' sound with a tiny flame — the exhaust port is blocked; get a <span class="hl">simmer needle</span> from the office to clear it. These are tenant usage issues — clean the cooktop after cooking, don't let oil seep into the gas stove, and don't use alcohol-based cleaners.</p>
+<div class="media">
+  <div class="mlabel">🖼️ Image · Cooktop no-fire guide</div>
+  <img src="../assets/img-cooktop-no-fire.jpg" alt="Cooktop no-fire guide" loading="lazy">
+  <div class="cap">Cooktop no-fire guide</div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Cooktop video 1</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1TfzbCQej1cJsEDMsJCqvTVEDzqxWi2C-/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1TfzbCQej1cJsEDMsJCqvTVEDzqxWi2C-/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Cooktop video 2</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1p5qEv5h_UjQKJ4s93oi_wvxZEe9pZU6J/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1p5qEv5h_UjQKJ4s93oi_wvxZEe9pZU6J/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Gas stove igniter not working</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1yOCBIX8n1i8qzBpzsAVF3z7-wXl7zOuj/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1yOCBIX8n1i8qzBpzsAVF3z7-wXl7zOuj/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<p class="t">If these don't resolve it, contact the PM.</p></div>
+</details><details id="q7">
+  <summary><span class="qicon">Q7</span>The oven light isn't working?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">A non-working light doesn't affect use. If the oven itself is unusable, it will be noted before you move in.</p></div>
+</details><details id="q8">
+  <summary><span class="qicon">Q8</span>The dishwasher isn't working — what do I do?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">First check power under the cabinet; the screen will show an error code. Search the error code + model + brand online for solutions. The most common issue is a blocked outlet causing no draining — remove and clean the hose cover and filter, and long-press the power button for 15 seconds to restart. These are tenant usage issues.</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · Miele dishwasher cleaning</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/12jejWAY8s244tBrLs312Jz1FsPUOPVoG/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/12jejWAY8s244tBrLs312Jz1FsPUOPVoG/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Miele upper rack adjustment</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1ZgCpZpMIQ81oaO9S1OPsiaf_rjucRzWT/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1ZgCpZpMIQ81oaO9S1OPsiaf_rjucRzWT/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Fisher &amp; Paykel cleaning</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1-YJOd2ElwhrLuucDoVVnZKmg6Sk0BdyZ/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1-YJOd2ElwhrLuucDoVVnZKmg6Sk0BdyZ/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<a class="media link" href="https://docs.google.com/document/d/1A0CVc8c2OmZiQ_5wCKFCgSl3vcqO_RKaSXbunuWIoSE/edit?usp=sharing" target="_blank" rel="noopener">
+  <span class="ic">📝</span><span class="lbl">Fisher &amp; Paykel not draining</span><span class="open">Open document →</span>
+</a>
+<div class="media">
+  <div class="mlabel">🎬 Video · Upper water supply hose dropped</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/164lrzpDHoRzS9UkwIlzo3k6y0z7_vmUt/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/164lrzpDHoRzS9UkwIlzo3k6y0z7_vmUt/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<a class="media link" href="https://docs.google.com/document/d/1qEuq0doK2qSCWKhv3YhA158wyZvyxaFPITm1IaIOpJs/edit?usp=sharing" target="_blank" rel="noopener">
+  <span class="ic">📝</span><span class="lbl">Dishwasher cleaner</span><span class="open">Open document →</span>
+</a>
+<p class="t">If it still doesn't work, contact the PM.</p></div>
+</details><details id="q9">
+  <summary><span class="qicon">Q9</span>The washing machine isn't working?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">First check power/switch; the screen will show an error code — search error code + model + brand online. Try restarting first: turn off, unplug, wait 5–10 minutes, plug back in. Won't start → check the door is fully closed; won't spin → check if the load is too heavy or on one side; won't drain → check the filter is blocked (small door near the bottom) or the drain hose is blocked. These are tenant usage issues.</p>
+<div class="media">
+  <div class="mlabel">🖼️ Image · Laundry room diagram</div>
+  <img src="../assets/img-laundry.jpg" alt="Laundry room diagram" loading="lazy">
+  <div class="cap">Laundry room diagram</div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Washing machine cleaning</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1gZ7EuWBbN5ZPP2b9ErOBNnLFzwRzMx0t/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1gZ7EuWBbN5ZPP2b9ErOBNnLFzwRzMx0t/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · No power? Troubleshooting</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1ASLRslNYOCZ8NmpeFTQgoWc6W99qRb89/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1ASLRslNYOCZ8NmpeFTQgoWc6W99qRb89/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · U-bend installation</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1uo4m5SFIa1A0-8qp9tQuzNoE7i6zMwFM/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1uo4m5SFIa1A0-8qp9tQuzNoE7i6zMwFM/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Draining / filter cleaning</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1qfqrjvO1rZsWNLQnXrzBw34b2DysZdLg/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1qfqrjvO1rZsWNLQnXrzBw34b2DysZdLg/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Door seal gap</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1z7tjaUOePG0p2BEZ7dPLqEYn8AXrSnb3/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1z7tjaUOePG0p2BEZ7dPLqEYn8AXrSnb3/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<p class="t">If it still doesn't work, contact the PM.</p></div>
+</details><details id="q10">
+  <summary><span class="qicon">Q10</span>The dryer isn't working?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">First check power/switch; the screen will show an error code. Try restarting: turn off, unplug, wait 5–10 minutes. Won't start → check the door is closed; won't dry → check the load is too heavy or the water tank is full (pull out the drawer near the top); won't drain → check the filter is blocked (bottom or side of the door seal), remove and clean the lint. These are tenant usage issues. If it still doesn't work, contact the PM.</p>
+<a class="media pdf" href="https://drive.google.com/file/d/1wpSqOSXvgzWKwaHOw7JQvMDw7t53Q5yI/view" target="_blank" rel="noopener">
+  <div class="mlabel">📄 PDF · Miele dryer manual</div>
+  <div class="cover-wrap"><img src="../assets/cover-miele-dryer-06086650.png" alt="Miele dryer manual" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">Miele dryer manual</span><span class="open">Open PDF →</span></div>
+</a>
+<a class="media pdf" href="https://drive.google.com/file/d/1yHWQ7s48-vQaUrQoS9z35WNJctMElNQW/view" target="_blank" rel="noopener">
+  <div class="mlabel">📄 PDF · Miele dryer user manual (English)</div>
+  <div class="cover-wrap"><img src="../assets/cover-miele-dryer-manual.png" alt="Miele dryer user manual (English)" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">Miele dryer user manual (English)</span><span class="open">Open PDF →</span></div>
+</a></div>
+</details><details id="q11">
+  <summary><span class="qicon">Q11</span>The basin won't drain?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Usually hair is tangled/blocking it — a tenant usage issue; never wash your hair in the basin! Buy a bottle of Drano (the large orange bottle):</p>
+<a class="media pdf" href="https://drive.google.com/file/d/1eS0Tf8Zw1bi0DwT9hVaC0IhK2RSoplzX/view" target="_blank" rel="noopener">
+  <div class="mlabel">📄 PDF · Drain blockage guide</div>
+  <div class="cover-wrap"><img src="../assets/cover-drainage.png" alt="Drain blockage guide" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">Drain blockage guide</span><span class="open">Open PDF →</span></div>
+</a>
+<p class="t">Pour half a bottle into the dry basin, wait 12 hours, then flush with hot water for a few minutes. If it still doesn't work, contact the PM.</p></div>
+</details><details id="q12">
+  <summary><span class="qicon">Q12</span>The toilet is leaking / won't flush?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">First open the cistern lid and turn off the water valve to stop further leaking, then contact the PM.</p></div>
+</details><details id="q13">
+  <summary><span class="qicon">Q13</span>Toilet seat misaligned?<span class="chev">›</span></summary>
+  <div class="ans"><div class="media">
+  <div class="mlabel">🎬 Video · Toilet lid removal</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1ugDYpdDQ_6Jl0Q5IOWOJOHvo2kB2mkzM/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1ugDYpdDQ_6Jl0Q5IOWOJOHvo2kB2mkzM/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Toilet repair guide</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1Lho8xOBrzWpeMKdEt-iSOO9xMYGBbhNc/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1Lho8xOBrzWpeMKdEt-iSOO9xMYGBbhNc/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Loose toilet seat</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/14Cd9tVAQ3oTwm0lyQl7L0AUiqYXjisBk/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/14Cd9tVAQ3oTwm0lyQl7L0AUiqYXjisBk/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div></div>
+</details><details id="q14">
+  <summary><span class="qicon">Q14</span>Tap fell off? / Basin button won't pop up?<span class="chev">›</span></summary>
+  <div class="ans"><div class="media">
+  <div class="mlabel">🎬 Video · Tap repair</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1RSAiAElSkCmBzKP2U3M28KjO7JIx6u9a/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1RSAiAElSkCmBzKP2U3M28KjO7JIx6u9a/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Basin button stuck</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1iNE2jtgXa6JO76-Mw5oDUHaFR5uqeSua/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1iNE2jtgXa6JO76-Mw5oDUHaFR5uqeSua/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div></div>
+</details><details id="q15">
+  <summary><span class="qicon">Q15</span>The air conditioner isn't working?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">If the panel shows an error code, contact the front desk to restart the main unit. Clean the filter if needed:</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · AC filter removal &amp; cleaning</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1ndRNfxaL47Gd6fEthOzQwarDRC_TQTo_/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1ndRNfxaL47Gd6fEthOzQwarDRC_TQTo_/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div></div>
+</details><details id="q16">
+  <summary><span class="qicon">Q16</span>The bed frame has collapsed?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Follow the repair video below:</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · Bed frame repair</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1ImyJ3kPlclJmEN_Th_kA8Ak_9-yrZKEc/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1ImyJ3kPlclJmEN_Th_kA8Ak_9-yrZKEc/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<p class="t">If it still doesn't work, contact the PM.</p></div>
+</details><details id="q17">
+  <summary><span class="qicon">Q17</span>Smoke alarm not working / constantly beeping?<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">It may need a new battery or a reset:</p>
+<div class="media">
+  <div class="mlabel">🎬 Video · Smoke alarm battery change</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1I8andRHgm7oWRm0-QtjHyHwVUzXwA3U0/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1I8andRHgm7oWRm0-QtjHyHwVUzXwA3U0/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div>
+<div class="media">
+  <div class="mlabel">🎬 Video · Resetting a beeping smoke alarm</div>
+  <iframe class="vid" src="https://drive.google.com/file/d/1WDC561s9S8fji2_azyYb-Ow8EGZnbgtv/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+  <div class="fallback">Can't play?<a href="https://drive.google.com/file/d/1WDC561s9S8fji2_azyYb-Ow8EGZnbgtv/view" target="_blank" rel="noopener">Open in Google Drive →</a></div>
+</div></div>
+</details>
+<footer>— Please contact your Property Manager if you have any questions —</footer>
+</div>
+<script src="../search-index.js"></script>
+<script src="../search.js"></script>
+<script>
+document.querySelectorAll('details').forEach(function(d){
+  d.addEventListener('toggle', function(){
+    if(d.open){
+      document.querySelectorAll('details[open]').forEach(function(o){
+        if(o!==d) o.removeAttribute('open');
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

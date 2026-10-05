@@ -27,6 +27,11 @@ body{background:var(--bg);color:var(--ink);
 a{color:var(--accent);text-decoration:none}
 .t,.note,.desc,.sub,.mlabel,.cap{overflow-wrap:anywhere;word-break:break-word}
 
+/* lang toggle */
+.langbar{text-align:right;padding:10px 2px 0;font-size:13px;font-weight:600}
+.langbar a{color:var(--muted)}
+.langbar a.on{color:var(--accent);font-weight:800}
+
 /* top bar */
 .topbar{position:sticky;top:0;z-index:10;background:rgba(245,243,240,.92);
   backdrop-filter:blur(8px);border-bottom:1px solid var(--border);
@@ -35,11 +40,12 @@ a{color:var(--accent);text-decoration:none}
   display:inline-flex;align-items:center;gap:4px;flex-shrink:0}
 .topbar .back .arr{color:var(--accent);font-size:18px}
 .topbar .ttl{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .lang{font-size:13px;font-weight:700;color:var(--accent);margin-left:auto;flex-shrink:0}
 
 /* hero (landing) */
-.hero{padding:36px 4px 8px}
+.hero{padding:28px 4px 8px}
 .hero .kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.5px}
-.hero h1{font-size:30px;font-weight:800;letter-spacing:1px;margin-top:6px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-top:6px;line-height:1.25}
 .hero .sub{font-size:15px;color:var(--muted);margin-top:8px}
 
 /* category grid (landing) */
@@ -135,14 +141,15 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">退房</span></div>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">退房</span><a class="lang" href="en/index.html">EN</a></div>
 <div class="wrap">
+<div class="langbar"><a href="en/index.html">EN</a></div>
 <div class="section-head">
   <div class="emoji">🔑</div>
   <h1>退房</h1>
   <div class="desc">退房流程、退押金</div>
 </div>
-<div class="search-wrap">
+<div class="search-wrap" data-empty="没有找到相关问题，换个词试试">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>

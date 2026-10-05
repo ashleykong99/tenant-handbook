@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import html as _html
 import json
+import os
 import re
-from content import CATEGORIES, FOOTER, SITE_TITLE, SITE_SUB, SITE_BRAND, SITE_NAME, VIDEO, PDF_OPEN, DOC_OPEN
+import content as zh
+import content_en as en
 
 CSS = """
 :root{
@@ -19,6 +21,11 @@ body{background:var(--bg);color:var(--ink);
 a{color:var(--accent);text-decoration:none}
 .t,.note,.desc,.sub,.mlabel,.cap{overflow-wrap:anywhere;word-break:break-word}
 
+/* lang toggle */
+.langbar{text-align:right;padding:10px 2px 0;font-size:13px;font-weight:600}
+.langbar a{color:var(--muted)}
+.langbar a.on{color:var(--accent);font-weight:800}
+
 /* top bar */
 .topbar{position:sticky;top:0;z-index:10;background:rgba(245,243,240,.92);
   backdrop-filter:blur(8px);border-bottom:1px solid var(--border);
@@ -27,11 +34,12 @@ a{color:var(--accent);text-decoration:none}
   display:inline-flex;align-items:center;gap:4px;flex-shrink:0}
 .topbar .back .arr{color:var(--accent);font-size:18px}
 .topbar .ttl{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .lang{font-size:13px;font-weight:700;color:var(--accent);margin-left:auto;flex-shrink:0}
 
 /* hero (landing) */
-.hero{padding:36px 4px 8px}
+.hero{padding:28px 4px 8px}
 .hero .kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.5px}
-.hero h1{font-size:30px;font-weight:800;letter-spacing:1px;margin-top:6px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-top:6px;line-height:1.25}
 .hero .sub{font-size:15px;color:var(--muted);margin-top:8px}
 
 /* category grid (landing) */
@@ -126,6 +134,45 @@ footer b{color:var(--ink)}
 @media(max-width:420px){.cats{grid-template-columns:1fr}}
 """
 
+UI = {
+  "zh": {
+    "lang": "zh-CN",
+    "other_lang": "EN",
+    "other_href_prefix": "en/",
+    "search_placeholder": "搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…",
+    "back": "首页",
+    "no_results": "没有找到相关问题，换个词试试",
+    "video_label": "视频",
+    "image_label": "图片",
+    "open_pdf": "打开 PDF →",
+    "open_doc": "打开文档 →",
+    "open_link": "打开 →",
+    "video_fallback": "无法播放？",
+    "video_fallback_link": "点这里在 Google Drive 打开 →",
+    "n_questions": "{} 个问题",
+    "n_one": "1 个问题",
+  },
+  "en": {
+    "lang": "en",
+    "other_lang": "中文",
+    "other_href_prefix": "../",
+    "search_placeholder": "Search: fridge / bond / key / sublet…",
+    "back": "Home",
+    "no_results": "No matching questions — try another keyword",
+    "video_label": "Video",
+    "image_label": "Image",
+    "open_pdf": "Open PDF →",
+    "open_doc": "Open document →",
+    "open_link": "Open →",
+    "video_fallback": "Can't play?",
+    "video_fallback_link": "Open in Google Drive →",
+    "n_questions": "{} questions",
+    "n_one": "1 question",
+  },
+}
+
+SITE_BASE = "https://ashleykong99.github.io/tenant-handbook"
+
 def esc(s):
     return _html.escape(s, quote=False)
 
@@ -134,7 +181,12 @@ def highlight(s):
     s = esc(s)
     return re.sub(r'【([^】]+)】', r'<span class="hl">\1</span>', s)
 
-def render_media_block(items):
+def asset(prefix, path):
+    if path.startswith("assets/"):
+        return prefix + path
+    return path
+
+def render_media_block(items, ui, prefix):
     out = []
     for m in items:
         t = m["type"]
@@ -142,32 +194,34 @@ def render_media_block(items):
             preview = f"https://drive.google.com/file/d/{m['id']}/preview"
             fallback = f"https://drive.google.com/file/d/{m['id']}/view"
             out.append(f'''<div class="media">
-  <div class="mlabel">🎬 视频 · {esc(m["label"])}</div>
+  <div class="mlabel">🎬 {ui["video_label"]} · {esc(m["label"])}</div>
   <iframe class="vid" src="{preview}" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
-  <div class="fallback">无法播放？<a href="{fallback}" target="_blank" rel="noopener">点这里在 Google Drive 打开 →</a></div>
+  <div class="fallback">{ui["video_fallback"]}<a href="{fallback}" target="_blank" rel="noopener">{ui["video_fallback_link"]}</a></div>
 </div>''')
         elif t == "image":
+            src = asset(prefix, m["src"])
             out.append(f'''<div class="media">
-  <div class="mlabel">🖼️ 图片 · {esc(m["label"])}</div>
-  <img src="{m["src"]}" alt="{esc(m["label"])}" loading="lazy">
+  <div class="mlabel">🖼️ {ui["image_label"]} · {esc(m["label"])}</div>
+  <img src="{src}" alt="{esc(m["label"])}" loading="lazy">
   <div class="cap">{esc(m["label"])}</div>
 </div>''')
         elif t == "pdf":
-            url = PDF_OPEN.format(m["id"])
+            url = zh.PDF_OPEN.format(m["id"])
+            cover = asset(prefix, m["cover"])
             out.append(f'''<a class="media pdf" href="{url}" target="_blank" rel="noopener">
   <div class="mlabel">📄 PDF · {esc(m["label"])}</div>
-  <div class="cover-wrap"><img src="{m["cover"]}" alt="{esc(m["label"])}" loading="lazy"></div>
-  <div class="meta"><span class="ic">📄</span><span class="lbl">{esc(m["label"])}</span><span class="open">打开 PDF →</span></div>
+  <div class="cover-wrap"><img src="{cover}" alt="{esc(m["label"])}" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">{esc(m["label"])}</span><span class="open">{ui["open_pdf"]}</span></div>
 </a>''')
         elif t == "doc":
-            url = DOC_OPEN.format(m["id"])
+            url = zh.DOC_OPEN.format(m["id"])
             out.append(f'''<a class="media link" href="{url}" target="_blank" rel="noopener">
-  <span class="ic">📝</span><span class="lbl">{esc(m["label"])}</span><span class="open">打开文档 →</span>
+  <span class="ic">📝</span><span class="lbl">{esc(m["label"])}</span><span class="open">{ui["open_doc"]}</span>
 </a>''')
         elif t == "link":
-            url = PDF_OPEN.format(m["id"])
+            url = zh.PDF_OPEN.format(m["id"])
             out.append(f'''<a class="media link" href="{url}" target="_blank" rel="noopener">
-  <span class="ic">🔗</span><span class="lbl">{esc(m["label"])}</span><span class="open">打开 →</span>
+  <span class="ic">🔗</span><span class="lbl">{esc(m["label"])}</span><span class="open">{ui["open_link"]}</span>
 </a>''')
     return "\n".join(out)
 
@@ -185,7 +239,7 @@ def render_table(tbl):
         parts.append('<tr>' + "".join(f'<td>{highlight(c)}</td>' for c in r) + '</tr>')
     return '<table class="tb">' + "".join(parts) + '</table>'
 
-def render_blocks(blocks):
+def render_blocks(blocks, ui, prefix):
     parts = []
     for b in blocks:
         if "t" in b:
@@ -197,12 +251,13 @@ def render_blocks(blocks):
         if "table" in b:
             parts.append(render_table(b["table"]))
         if "media" in b:
-            parts.append(render_media_block(b["media"]))
+            parts.append(render_media_block(b["media"], ui, prefix))
     return "\n".join(parts)
 
-SEARCH_BAR = '''<div class="search-wrap">
+def search_bar(ui):
+    return f'''<div class="search-wrap" data-empty="{esc(ui["no_results"])}">
   <span class="search-ico">🔍</span>
-  <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
+  <input class="search-input" type="search" placeholder="{esc(ui["search_placeholder"])}" autocomplete="off">
   <div class="search-results"></div>
 </div>'''
 
@@ -211,45 +266,38 @@ def flatten_blocks(blocks):
     for b in blocks:
         if "t" in b:
             parts.append(b["t"])
+        if "h" in b:
+            parts.append(b["h"])
+        if "list" in b:
+            parts.extend(b["list"])
+        if "table" in b:
+            for row in b["table"].get("rows", []):
+                parts.extend(row)
         if "media" in b:
             for m in b["media"]:
                 parts.append(m.get("label", ""))
     return " ".join(parts)
 
-def build_search_index():
-    entries = []
-    for c in CATEGORIES:
-        for i, q in enumerate(c["questions"], 1):
-            entries.append({
-                "cat": c["title"],
-                "file": c["id"] + ".html",
-                "id": "q%d" % i,
-                "q": q["q"],
-                "t": flatten_blocks(q["blocks"]),
-            })
-    return "window.SEARCH_INDEX = " + json.dumps(entries, ensure_ascii=False) + ";"
-
-OG_IMAGE = "https://ashleykong99.github.io/tenant-handbook/assets/og-cover.png"
-
-def page(title, body, script="", topbar=None, og_title=None, desc=None):
+def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=None, desc=None):
     top = ""
     if topbar:
-        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">{esc(topbar)}</span></div>'''
+        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> {ui["back"]}</a><span class="ttl">{esc(topbar)}</span><a class="lang" href="{ui["other_href_prefix"]}index.html">{ui["other_lang"]}</a></div>'''
     if og_title is None:
         og_title = title
     if desc is None:
-        desc = SITE_SUB
+        desc = C.SITE_SUB
+    langbar = f'<div class="langbar"><a href="{ui["other_href_prefix"]}index.html">{ui["other_lang"]}</a></div>'
     return f"""<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="{ui["lang"]}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{esc(title)} · {esc(SITE_TITLE)}</title>
+<title>{esc(title)} · {esc(C.SITE_TITLE)}</title>
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="{esc(SITE_TITLE)}">
+<meta property="og:site_name" content="{esc(C.SITE_TITLE)}">
 <meta property="og:title" content="{esc(og_title)}">
 <meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image" content="{og_image}">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="1600">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,40 +306,42 @@ def page(title, body, script="", topbar=None, og_title=None, desc=None):
 <body>
 {top}
 <div class="wrap">
+{langbar}
 {body}
-<footer>— 如有疑问请联系你的 Property Manager —</footer>
+<footer>— {esc(C.FOOTER)} —</footer>
 </div>
-<script src="search-index.js"></script>
-<script src="search.js"></script>
+<script src="{prefix}search-index.js"></script>
+<script src="{prefix}search.js"></script>
 {script}
 </body>
 </html>"""
 
-def build_index():
+def build_index(C, ui, prefix, og_image):
     cards = []
-    for c in CATEGORIES:
+    for c in C.CATEGORIES:
         n = len(c["questions"])
+        count = ui["n_one"] if n == 1 else ui["n_questions"].format(n)
         cards.append(f'''<a class="cat" href="{c["id"]}.html">
   <span class="emoji">{c["emoji"]}</span>
   <span class="name">{esc(c["title"])}</span>
   <span class="desc">{esc(c["desc"])}</span>
-  <span class="n">{n} 个问题</span>
+  <span class="n">{count}</span>
 </a>''')
     body = f'''<div class="hero">
   <div class="kicker">TENANT HANDBOOK</div>
-  <h1>{esc(SITE_BRAND)}<br>{esc(SITE_NAME)}</h1>
-  <div class="sub">{esc(SITE_SUB)}</div>
+  <h1>{esc(C.SITE_BRAND)}<br>{esc(C.SITE_NAME)}</h1>
+  <div class="sub">{esc(C.SITE_SUB)}</div>
 </div>
-{SEARCH_BAR}
+{search_bar(ui)}
 <div class="cats">{"".join(cards)}</div>'''
-    return page(SITE_TITLE, body)
+    return page(C, ui, C.SITE_TITLE, body, og_image, prefix)
 
-def build_category(c):
+def build_category(C, ui, prefix, og_image, c):
     qs = []
     for i, q in enumerate(c["questions"], 1):
         qs.append(f'''<details id="q{i}">
   <summary><span class="qicon">Q{i}</span>{esc(q["q"])}<span class="chev">›</span></summary>
-  <div class="ans">{render_blocks(q["blocks"])}</div>
+  <div class="ans">{render_blocks(q["blocks"], ui, prefix)}</div>
 </details>''')
     note = ""
     if c.get("note"):
@@ -301,11 +351,12 @@ def build_category(c):
   <h1>{esc(c["title"])}</h1>
   <div class="desc">{esc(c["desc"])}</div>
 </div>
-{SEARCH_BAR}
+{search_bar(ui)}
 {note}
 {"".join(qs)}'''
-    return page(f'{c["emoji"]} {c["title"]}', body, script=SCRIPT, topbar=c["title"],
-                og_title=f'{c["title"]} · {SITE_TITLE}', desc=c["desc"])
+    return page(C, ui, f'{c["emoji"]} {c["title"]}', body, og_image, prefix,
+                script=SCRIPT, topbar=c["title"],
+                og_title=f'{c["title"]} · {C.SITE_TITLE}', desc=c["desc"])
 
 SCRIPT = """<script>
 document.querySelectorAll('details').forEach(function(d){
@@ -319,11 +370,30 @@ document.querySelectorAll('details').forEach(function(d){
 });
 </script>"""
 
+def build_search_index(C):
+    entries = []
+    for c in C.CATEGORIES:
+        for i, q in enumerate(c["questions"], 1):
+            entries.append({
+                "cat": c["title"],
+                "file": c["id"] + ".html",
+                "id": "q%d" % i,
+                "q": q["q"],
+                "t": flatten_blocks(q["blocks"]),
+            })
+    return "window.SEARCH_INDEX = " + json.dumps(entries, ensure_ascii=False) + ";"
+
+def build_site(C, ui, out_dir, prefix, og_image):
+    os.makedirs(out_dir, exist_ok=True)
+    open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(build_index(C, ui, prefix, og_image))
+    for c in C.CATEGORIES:
+        open(os.path.join(out_dir, c["id"] + ".html"), "w", encoding="utf-8").write(build_category(C, ui, prefix, og_image, c))
+    open(os.path.join(out_dir, "search-index.js"), "w", encoding="utf-8").write(build_search_index(C))
+    print(f"generated [{ui['lang']}] -> {out_dir}")
+
 if __name__ == "__main__":
-    import os
     base = os.path.dirname(os.path.abspath(__file__))
-    open(os.path.join(base, "index.html"), "w", encoding="utf-8").write(build_index())
-    for c in CATEGORIES:
-        open(os.path.join(base, c["id"] + ".html"), "w", encoding="utf-8").write(build_category(c))
-    open(os.path.join(base, "search-index.js"), "w", encoding="utf-8").write(build_search_index())
-    print("generated: index.html +", ", ".join(c["id"]+".html" for c in CATEGORIES), "+ search-index.js")
+    zh_img = SITE_BASE + "/assets/og-cover.png"
+    en_img = SITE_BASE + "/assets/og-cover-en.png"
+    build_site(zh, UI["zh"], base, "", zh_img)
+    build_site(en, UI["en"], os.path.join(base, "en"), "../", en_img)

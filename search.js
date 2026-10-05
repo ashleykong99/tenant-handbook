@@ -5,6 +5,7 @@
   if (!wrap) return;
   var input = wrap.querySelector('.search-input');
   var panel = wrap.querySelector('.search-results');
+  var emptyMsg = wrap.getAttribute('data-empty') || 'No results';
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
@@ -28,7 +29,7 @@
 
   function render(hits) {
     if (!hits.length) {
-      panel.innerHTML = '<div class="sr-empty">没有找到相关问题，换个词试试</div>';
+      panel.innerHTML = '<div class="sr-empty">' + emptyMsg + '</div>';
     } else {
       panel.innerHTML = hits.map(function (h) {
         return '<a class="sr-item" href="' + h.file + '#' + h.id + '">' +

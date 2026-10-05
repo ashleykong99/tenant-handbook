@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>📋 Move-in Guide · Aurora × Protique Real Estate Tenant Handbook</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurora × Protique Real Estate Tenant Handbook">
+<meta property="og:title" content="Move-in Guide · Aurora × Protique Real Estate Tenant Handbook">
+<meta property="og:description" content="Front desk, access, parcels, facilities, moving, waste">
+<meta property="og:image" content="https://ashleykong99.github.io/tenant-handbook/assets/og-cover-en.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#F5F3F0; --card:#FFFFFF; --ink:#1F2937; --muted:#6B7280;
+  --accent:#D9480F; --accent-soft:#FBE9E2; --green:#1A9E50;
+  --border:#EAE6DF; --shadow:0 1px 3px rgba(31,41,55,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px 40px}
+a{color:var(--accent);text-decoration:none}
+.t,.note,.desc,.sub,.mlabel,.cap{overflow-wrap:anywhere;word-break:break-word}
+
+/* lang toggle */
+.langbar{text-align:right;padding:10px 2px 0;font-size:13px;font-weight:600}
+.langbar a{color:var(--muted)}
+.langbar a.on{color:var(--accent);font-weight:800}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:10;background:rgba(245,243,240,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--border);
+  padding:12px 16px;display:flex;align-items:center;gap:12px}
+.topbar .back{font-size:15px;font-weight:600;color:var(--ink);
+  display:inline-flex;align-items:center;gap:4px;flex-shrink:0}
+.topbar .back .arr{color:var(--accent);font-size:18px}
+.topbar .ttl{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .lang{font-size:13px;font-weight:700;color:var(--accent);margin-left:auto;flex-shrink:0}
+
+/* hero (landing) */
+.hero{padding:28px 4px 8px}
+.hero .kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-top:6px;line-height:1.25}
+.hero .sub{font-size:15px;color:var(--muted);margin-top:8px}
+
+/* category grid (landing) */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.cat{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:20px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);
+  transition:transform .12s ease,border-color .12s ease;color:var(--ink)}
+.cat:active{transform:scale(.98)}
+.cat .emoji{font-size:30px;line-height:1}
+.cat .name{font-size:17px;font-weight:700}
+.cat .desc{font-size:12.5px;color:var(--muted);line-height:1.5}
+.cat .n{font-size:12px;color:var(--accent);font-weight:600}
+
+/* note banner */
+.note{margin-top:20px;background:var(--accent-soft);border:1px solid #F3D5C7;
+  border-radius:12px;padding:12px 14px;font-size:13.5px;color:#8A3A12}
+
+/* section header */
+.section-head{padding:20px 4px 4px}
+.section-head .emoji{font-size:34px}
+.section-head h1{font-size:26px;font-weight:800;margin-top:2px}
+.section-head .desc{font-size:14px;color:var(--muted)}
+
+/* accordion */
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  margin-top:12px;box-shadow:var(--shadow);overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;
+  gap:12px;font-size:16.5px;font-weight:700;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary .qicon{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);
+  color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px}
+summary .chev{margin-left:auto;color:var(--muted);font-size:15px;transition:transform .18s ease;flex-shrink:0}
+details[open] summary .chev{transform:rotate(90deg)}
+.ans{padding:2px 18px 18px;font-size:15.5px;color:#374151}
+.ans .t{margin-top:10px}
+.ans .t:first-child{margin-top:0}
+.ans b{font-weight:700}
+.hl{background:#FFF3B0;font-weight:700;color:#1F2937;padding:0 3px;border-radius:4px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ans .h3{font-weight:700;margin-top:16px;font-size:15.5px;color:var(--ink)}
+.ans ul.bl{margin:8px 0 0;padding-left:20px}
+.ans ul.bl li{margin:5px 0}
+.ans ul.bl li::marker{color:var(--accent)}
+.ans table.tb{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;background:#fff}
+.ans table.tb th,.ans table.tb td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+.ans table.tb th{background:var(--accent-soft);font-weight:700}
+.ans table.tb td{word-break:break-word}
+
+/* search */
+.search-wrap{position:relative;margin-top:18px}
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;opacity:.65}
+.search-input{width:100%;padding:13px 16px 13px 42px;border:1.5px solid var(--border);border-radius:12px;
+  font-size:15px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
+.search-input:focus{border-color:var(--accent)}
+.search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 10px 28px rgba(31,41,55,.14);max-height:60vh;overflow-y:auto;z-index:30}
+.sr-item{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink)}
+.sr-item:last-child{border-bottom:none}
+.sr-item:active{background:var(--accent-soft)}
+.sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
+.sr-q{font-size:14.5px;font-weight:600}
+.sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+
+/* media */
+.media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
+.mlabel{font-size:13px;font-weight:600;color:var(--muted);padding:10px 12px 0;display:flex;align-items:center;gap:6px}
+.media .vid{display:block;width:100%;height:360px;border:0;margin-top:8px;background:#000}
+.media img{display:block;width:100%;height:auto;margin-top:8px}
+.media .cap{font-size:13px;color:var(--muted);padding:8px 12px 12px}
+.media .fallback{display:block;font-size:12.5px;color:var(--muted);padding:0 12px 12px}
+.media .fallback a{font-weight:600}
+
+/* pdf card */
+.media.pdf{display:block;text-decoration:none;color:var(--ink)}
+.media.pdf .cover-wrap{position:relative;margin-top:8px}
+.media.pdf .cover-wrap img{display:block;width:100%;height:auto;margin:0}
+.media.pdf .meta{display:flex;align-items:center;gap:10px;padding:12px}
+.media.pdf .meta .ic{font-size:22px}
+.media.pdf .meta .lbl{font-weight:700;font-size:15px;flex:1}
+.media.pdf .meta .open{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+
+/* link card */
+.media.link{display:flex;align-items:center;gap:10px;padding:14px;text-decoration:none;color:var(--ink)}
+.media.link .ic{font-size:20px}
+.media.link .lbl{font-weight:600;font-size:15px;flex:1}
+.media.link .open{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+
+footer{margin-top:28px;text-align:center;font-size:13px;color:var(--muted);padding:16px 0}
+footer b{color:var(--ink)}
+
+@media(max-width:420px){.cats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> Home</a><span class="ttl">Move-in Guide</span><a class="lang" href="../index.html">中文</a></div>
+<div class="wrap">
+<div class="langbar"><a href="../index.html">中文</a></div>
+<div class="section-head">
+  <div class="emoji">📋</div>
+  <h1>Move-in Guide</h1>
+  <div class="desc">Front desk, access, parcels, facilities, moving, waste</div>
+</div>
+<div class="search-wrap" data-empty="No matching questions — try another keyword">
+  <span class="search-ico">🔍</span>
+  <input class="search-input" type="search" placeholder="Search: fridge / bond / key / sublet…" autocomplete="off">
+  <div class="search-results"></div>
+</div>
+
+<details id="q1">
+  <summary><span class="qicon">Q1</span>Building Front Desk &amp; Key Contacts<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">The building front desk is open 24/7, all year round:</p>
+<ul class="bl"><li>Concierge: daily 7:00am–11:00pm</li>
+<li>Security: daily 11:00pm–7:00am</li>
+<li>Building Manager's Office: Mon–Fri 9:00am–5:00pm</li>
+<li>Urgent matters: contact the front desk first; they will escalate to building management</li></ul>
+<p class="h3">Key Contacts</p>
+<table class="tb"><tr><th>Contact / Department</th><th>Details</th></tr><tr><td>Operations Manager – Pauline Tan</td><td>0456 436 159 / pauline.tan@focusedfm.com.au</td></tr><tr><td>Building Manager</td><td>0467 888 058 / AuroraBM@focusedfm.com.au</td></tr><tr><td>Assistant Building Manager – Ans Alvi</td><td>0448 149 772 / auroraassistantbm@focusedfm.com.au</td></tr><tr><td>Concierge / Security</td><td>0497 777 057 / auroraconcierge@focusedfm.com.au</td></tr><tr><td>Focused Facilities Management</td><td>(03) 9329 4016 / info@focusedfm.com.au</td></tr></table></div>
+</details><details id="q2">
+  <summary><span class="qicon">Q2</span>WeWumbo App Registration<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">All residents must register on the WeWumbo App for:</p>
+<ul class="bl"><li>Identity verification</li>
+<li>Facility and moving-lift bookings</li>
+<li>Parcel notifications</li>
+<li>Building announcements</li>
+<li>Other building service requests</li></ul>
+<p class="h3">When registering</p>
+<ul class="bl"><li>Select Tenant or Owner</li>
+<li>New residents select <span class="hl">Moving In</span>; existing residents select <span class="hl">Existing</span></li>
+<li>Select your zone: Stratus (Levels 10–30) / Cumulus (Levels 32–60) / Australis (Levels 63–85)</li>
+<li>Upload a valid photo ID</li>
+<li>Tenants upload their Lease Agreement</li></ul></div>
+</details><details id="q3">
+  <summary><span class="qicon">Q3</span>Moving In &amp; Moving Out<span class="chev">›</span></summary>
+  <div class="ans"><p class="h3">Booking Requirements</p>
+<ul class="bl"><li>Must book via WeWumbo: Move in/out Lift &amp; Loading Dock</li>
+<li>At least 8 hours in advance</li>
+<li>Without a booking, the building may refuse the move</li>
+<li>Confirm the lift time slot before booking your removalist</li></ul>
+<p class="h3">Allowed Moving Times</p>
+<ul class="bl"><li>Mon–Sat: 9:00am–5:30pm</li>
+<li>Sunday &amp; public holidays: moving not allowed</li>
+<li>Each booking: up to 3 hours</li></ul>
+<p class="h3">Moving Lifts</p>
+<table class="tb"><tr><th>Levels</th><th>Lift</th><th>Internal Dimensions</th><th>Door Opening</th></tr><tr><td>10–60</td><td>Lift C</td><td>1800L × 2100W × 2600H mm</td><td>1300W × 2100H mm</td></tr><tr><td>63–85</td><td>Lift G</td><td>1400L × 2000W × 2700H mm</td><td>1100W × 2100H mm</td></tr></table>
+<p class="t">Dimensions exclude lift protective padding; allow extra margin for furniture.</p>
+<p class="h3">On Moving Day</p>
+<ul class="bl"><li>Removal trucks enter the Loading Dock via Little La Trobe Street</li>
+<li>The resident and removalist must register at the Concierge first</li>
+<li>Collect the relevant keys and moving route instructions</li>
+<li>Notify the Concierge and return the keys when finished</li>
+<li>All luggage and packing waste must be removed by the resident or removalist</li>
+<li>The resident is liable for damage to the Loading Dock, lifts, lobbies and corridors</li></ul>
+<p class="t">If the rules are not followed, the building may refuse the move and is not liable for removalist cancellation, waiting or other costs.</p></div>
+</details><details id="q4">
+  <summary><span class="qicon">Q4</span>Access, Keys &amp; Intercom<span class="chev">›</span></summary>
+  <div class="ans"><p class="h3">Intercom</p>
+<p class="t">When a visitor enters your apartment number and rings:</p>
+<ul class="bl"><li>Press Answer to pick up</li>
+<li>Press <span class="hl">Door Release &amp; Lift Release</span> to: unlock the entry door for ~5 seconds, and enable lift access for ~180 seconds</li>
+<li>The lift will only allow the visitor to select your floor</li></ul>
+<p class="h3">Keys &amp; Access</p>
+<ul class="bl"><li>Apartment Key: enters your apartment</li>
+<li>FOB: enters the building, lifts and facility areas</li>
+<li>Car Park Remote: opens the car park roller door</li></ul>
+<p class="h3">Note</p>
+<ul class="bl"><li>If you are locked out, contact your agent</li></ul></div>
+</details><details id="q5">
+  <summary><span class="qicon">Q5</span>Parcels &amp; Food Delivery<span class="chev">›</span></summary>
+  <div class="ans"><p class="h3">Delivery Address Format</p>
+<p class="t">Must include:</p>
+<ul class="bl"><li>Recipient's full name</li>
+<li>Mobile number</li>
+<li>Full address, e.g.: 8601/228 La Trobe Street, Melbourne VIC 3000</li></ul>
+<p class="t">Incomplete details may cause delivery delays or loss.</p>
+<p class="h3">Small Parcels</p>
+<ul class="bl"><li>Usually placed in your mailbox by the courier</li>
+<li>Not always notified — check your mailbox regularly</li>
+<li>Tenants who lose their mailbox key should contact us; owners can contact the front desk</li></ul>
+<p class="h3">Medium Parcels</p>
+<ul class="bl"><li>Registered by the front desk on WeWumbo</li>
+<li>You receive a collection notification via the App</li>
+<li>You must be registered on WeWumbo to receive notifications</li>
+<li>Uncollected after 28 days — returned to sender</li></ul>
+<p class="h3">Large Parcels (front desk only accepts within these limits)</p>
+<ul class="bl"><li>No more than 15kg</li>
+<li>No larger than 550mm × 300mm × 300mm</li>
+<li>Must be collected within 3 days of receiving the SMS</li>
+<li>Overdue parcels are returned to sender</li></ul>
+<p class="h3">Furniture, appliances etc. exceeding the limits</p>
+<ul class="bl"><li>The front desk can help contact you, but you must collect immediately at the Loading Dock</li>
+<li>Multiple large items may require a moving-lift booking</li>
+<li>The front desk may refuse if you cannot collect in time</li>
+<li>Notify the front desk in advance when signing; oversized items still need someone else to receive them</li></ul>
+<p class="h3">Important Disclaimer</p>
+<ul class="bl"><li>The building management is not responsible for loss, damage or theft of parcels after they are handed to the front desk</li>
+<li>Valuables should be received in person wherever possible</li></ul>
+<p class="h3">Food Delivery</p>
+<ul class="bl"><li>The front desk does not accept food, takeaway or fresh groceries</li>
+<li>Track your delivery and collect it in the lobby in person</li>
+<li>The building is not responsible for spoilage or loss from late collection</li></ul></div>
+</details><details id="q6">
+  <summary><span class="qicon">Q6</span>Noise Restrictions<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Residential noise is prohibited during these times:</p>
+<table class="tb"><tr><th>Day</th><th>Restricted Hours</th></tr><tr><td>Mon–Thu</td><td>Before 7:00am, after 10:00pm</td></tr><tr><td>Friday</td><td>Before 7:00am, after 11:00pm</td></tr><tr><td>Saturday &amp; public holidays</td><td>Before 9:00am, after 11:00pm</td></tr><tr><td>Sunday</td><td>Before 9:00am, after 10:00pm</td></tr></table>
+<p class="t">Even outside these hours, prolonged or excessive noise may still be unreasonable.</p>
+<p class="h3">If You Experience Noise</p>
+<ul class="bl"><li>Contact the Concierge or Security immediately</li>
+<li>Record the time, noise type, and audio/video where possible</li>
+<li>The front desk or security will investigate and give a verbal warning</li>
+<li>Persistent issues escalate to the Owners Corporation</li>
+<li>Serious or ongoing noise can be reported to police</li></ul></div>
+</details><details id="q7">
+  <summary><span class="qicon">Q7</span>Smoking &amp; Common Areas<span class="chev">›</span></summary>
+  <div class="ans"><p class="h3">No Smoking / No Vaping</p>
+<p class="t">Smoking or vaping is strictly prohibited in these common areas:</p>
+<ul class="bl"><li>Corridors</li>
+<li>Lobby and lift lobbies</li>
+<li>Car park and basement areas</li>
+<li>Fire stairs</li></ul>
+<p class="t">Violations may trigger the fire alarm and a Breach Notice.</p>
+<p class="t">If cooking or smoking inside your apartment:</p>
+<ul class="bl"><li>Do not open the entry door to ventilate</li>
+<li>Open the windows instead</li>
+<li>Smoke entering the common corridors may trigger the building fire alarm</li></ul>
+<p class="h3">Common Areas</p>
+<ul class="bl"><li>No littering</li>
+<li>No doormats, shoes or personal items</li>
+<li>Fire escape routes must stay clear</li>
+<li>Common-area power outlets are for building maintenance only</li>
+<li>Not for private use or EV charging</li>
+<li>Violations will receive a Breach Notice</li></ul></div>
+</details><details id="q8">
+  <summary><span class="qicon">Q8</span>Facilities &amp; Opening Hours<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">Facilities available depend on your floor:</p>
+<table class="tb"><tr><th>Resident Zone</th><th>Facility Levels</th></tr><tr><td>Stratus 10–30</td><td>Level 8</td></tr><tr><td>Cumulus 32–60</td><td>Levels 8 &amp; 61</td></tr><tr><td>Australis 63–85</td><td>Levels 8, 61 &amp; 86</td></tr></table>
+<p class="t">All facilities that require booking must be approved via WeWumbo.</p>
+<p class="h3">Key Facilities</p>
+<ul class="bl"><li>Level 8: gym, 25m pool, steam room, sauna, yoga room, kitchen, BBQ area</li>
+<li>Level 61: lounge, wine cellar, games lounge, meeting rooms, dining room, karaoke room</li>
+<li>Level 86: Australis Lounge, kitchen, dining room, Moonlight Cinema, gym, yoga room, reading lounge</li></ul>
+<p class="h3">Key Opening Hours</p>
+<ul class="bl"><li>Gym &amp; yoga room: 24 hours</li>
+<li>Pool, steam room &amp; sauna: 6:00am–10:00pm</li>
+<li>Most lounges &amp; function rooms: 8:00am–11:00pm</li>
+<li>BBQ area: 9:00am–11:00pm</li></ul></div>
+</details><details id="q9">
+  <summary><span class="qicon">Q9</span>Facility Use Rules<span class="chev">›</span></summary>
+  <div class="ans"><p class="h3">Usage Rules</p>
+<ul class="bl"><li>For residents and their invited guests only</li>
+<li>No selling, booking for others, or external renting</li>
+<li>The booking resident must be present at all times</li>
+<li>Register and sign the confirmation form at the Concierge before use</li>
+<li>One company may only book the same room once per day</li>
+<li>No consecutive bookings</li>
+<li>Each facility may be booked up to 5 times per month</li>
+<li>Under-16s must be accompanied by an adult</li>
+<li>Clean up and dispose of rubbish after use</li>
+<li>Residents are responsible for their guests' behaviour</li>
+<li>The booking resident pays for any damage</li>
+<li>No decorations fixed to walls, doors or other surfaces</li>
+<li>Turn off power, gas, air conditioning and lights before leaving</li>
+<li>No photography or recording in the gym, pool, sauna, steam room or yoga room without permission</li></ul>
+<p class="h3">Prohibited in Function Rooms</p>
+<ul class="bl"><li>Excessive alcohol</li>
+<li>Smoking or vaping</li>
+<li>Pets</li>
+<li>Amplified music</li>
+<li>Glass and fragile items</li>
+<li>Sharp objects</li>
+<li>Private appliances or kitchen equipment</li></ul>
+<p class="h3">Pool, Steam Room &amp; Sauna</p>
+<ul class="bl"><li>Pool size: 25m long, 5m wide, 1.2m deep</li>
+<li>Shower before entering the pool</li>
+<li>No diving, running or dangerous play</li>
+<li>Bring your own towel</li>
+<li>Dry off before leaving the pool area</li>
+<li>Wet clothes and shoes must not be taken outside the pool area</li>
+<li>No skinny-dipping</li></ul>
+<p class="t">Pregnant women, or people with heart, circulatory, respiratory, blood pressure, diabetes, kidney or other conditions, are not advised to use the steam room or sauna. Also wait until you have recovered after drinking, eating or exercising.</p></div>
+</details><details id="q10">
+  <summary><span class="qicon">Q10</span>Waste Disposal<span class="chev">›</span></summary>
+  <div class="ans"><p class="t">At the time of publishing, the garbage chute is temporarily out of use. Current requirements:</p>
+<ul class="bl"><li>Do not leave rubbish in the bin room, chute or floor common areas</li>
+<li>General waste and recyclables must go to B1</li>
+<li>Tie rubbish securely and double-bag it to prevent liquid staining the carpet</li>
+<li>Large cardboard boxes must be flattened</li>
+<li>Do not put furniture, appliances or bulky items in general bins</li>
+<li>N2O (nangs/laughing gas) canisters must not go in general, recycling or bulky waste — contact the supplier</li>
+<li>Do not leave rubbish on the ground</li></ul>
+<p class="h3">Lifts to B1</p>
+<ul class="bl"><li>Lift C: lower and mid-rise residents</li>
+<li>Lift G: high-rise residents</li></ul>
+<p class="t">On weekdays 9:00am–6:00pm, Lifts C and G may be locked for moving bookings, so dispose of waste <span class="hl">weekdays 6:00pm–9:00am next day</span>; Sundays and public holidays are usually available all day.</p>
+<p class="h3">Bulky Waste</p>
+<ul class="bl"><li>Collected on the first Saturday of each month</li>
+<li>Only place items in the B1 designated area on the collection date</li></ul>
+<p class="h3">E-waste</p>
+<ul class="bl"><li>Place in the E-waste Bin near the bulky waste area</li>
+<li>Electrical items only</li>
+<li>No general waste, cardboard or non-electronic bulky items</li></ul>
+<p class="h3">Donation Bin</p>
+<ul class="bl"><li>Placed at the Loading Dock every second Friday</li>
+<li>Collected on Saturday</li>
+<li>Clothing and apparel only</li>
+<li>No furniture or appliances</li></ul></div>
+</details>
+<footer>— Please contact your Property Manager if you have any questions —</footer>
+</div>
+<script src="../search-index.js"></script>
+<script src="../search.js"></script>
+<script>
+document.querySelectorAll('details').forEach(function(d){
+  d.addEventListener('toggle', function(){
+    if(d.open){
+      document.querySelectorAll('details[open]').forEach(function(o){
+        if(o!==d) o.removeAttribute('open');
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
