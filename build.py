@@ -422,7 +422,7 @@ def build_chooser(og_image):
 <title>租客使用手册 · Tenant Handbook</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="租客使用手册 · Tenant Handbook">
-<meta property="og:description" content="Aurora × Protique Real Estate">
+<meta property="og:description" content="Aurora × Protique Realty">
 <meta property="og:image" content="__OG__">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="1600">
@@ -450,7 +450,7 @@ h1{font-size:32px;font-weight:800;margin-top:16px;letter-spacing:1px}
 </head>
 <body>
 <div class="wrap">
-  <div class="badge">AURORA × PROTIQUE REAL ESTATE</div>
+  <div class="badge">AURORA × PROTIQUE REALTY</div>
   <div class="emoji">🏠</div>
   <h1>租客使用手册</h1>
   <div class="en">Tenant Handbook</div>

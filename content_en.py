@@ -713,7 +713,7 @@ CATEGORIES = [
 ]
 
 FOOTER = "Please contact your Property Manager if you have any questions"
-SITE_BRAND = "Aurora × Protique Real Estate"
+SITE_BRAND = "Aurora × Protique Realty"
 SITE_NAME = "Tenant Handbook"
 SITE_TITLE = SITE_BRAND + " " + SITE_NAME
 SITE_SUB = "Please read before moving in. Check here first, then contact your Property Manager."
