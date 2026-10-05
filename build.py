@@ -138,7 +138,7 @@ UI = {
   "zh": {
     "lang": "zh-CN",
     "other_lang": "EN",
-    "other_href_prefix": "en/",
+    "other_href": "../en/index.html",
     "search_placeholder": "搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…",
     "back": "首页",
     "no_results": "没有找到相关问题，换个词试试",
@@ -155,7 +155,7 @@ UI = {
   "en": {
     "lang": "en",
     "other_lang": "中文",
-    "other_href_prefix": "../",
+    "other_href": "../zh/index.html",
     "search_placeholder": "Search: fridge / bond / key / sublet…",
     "back": "Home",
     "no_results": "No matching questions — try another keyword",
@@ -281,12 +281,12 @@ def flatten_blocks(blocks):
 def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=None, desc=None):
     top = ""
     if topbar:
-        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> {ui["back"]}</a><span class="ttl">{esc(topbar)}</span><a class="lang" href="{ui["other_href_prefix"]}index.html">{ui["other_lang"]}</a></div>'''
+        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> {ui["back"]}</a><span class="ttl">{esc(topbar)}</span><a class="lang" href="{ui["other_href"]}">{ui["other_lang"]}</a></div>'''
     if og_title is None:
         og_title = title
     if desc is None:
         desc = C.SITE_SUB
-    langbar = f'<div class="langbar"><a href="{ui["other_href_prefix"]}index.html">{ui["other_lang"]}</a></div>'
+    langbar = f'<div class="langbar"><a href="{ui["other_href"]}">{ui["other_lang"]}</a></div>'
     return f"""<!DOCTYPE html>
 <html lang="{ui["lang"]}">
 <head>
@@ -310,7 +310,7 @@ def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=
 {body}
 <footer>— {esc(C.FOOTER)} —</footer>
 </div>
-<script src="{prefix}search-index.js"></script>
+<script src="search-index.js"></script>
 <script src="{prefix}search.js"></script>
 {script}
 </body>
@@ -391,9 +391,60 @@ def build_site(C, ui, out_dir, prefix, og_image):
     open(os.path.join(out_dir, "search-index.js"), "w", encoding="utf-8").write(build_search_index(C))
     print(f"generated [{ui['lang']}] -> {out_dir}")
 
+def build_chooser(og_image):
+    return """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>租客使用手册 · Tenant Handbook</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="租客使用手册 · Tenant Handbook">
+<meta property="og:description" content="Aurora × Protique Real Estate">
+<meta property="og:image" content="__OG__">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#F5F3F0;color:#1F2937;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Helvetica Neue",sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.wrap{width:100%;max-width:420px;text-align:center}
+.badge{display:inline-block;background:#FBE9E2;color:#D9480F;font-size:13px;font-weight:700;
+  padding:6px 18px;border-radius:999px;letter-spacing:2px}
+.emoji{font-size:72px;line-height:1;margin-top:28px}
+h1{font-size:32px;font-weight:800;margin-top:16px;letter-spacing:1px}
+.en{font-size:18px;color:#6B7280;margin-top:6px;font-weight:600;letter-spacing:1px}
+.divider{width:56px;height:4px;background:#D9480F;border-radius:3px;margin:24px auto}
+.opts{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.opt{display:block;background:#FFFFFF;border:1.5px solid #EAE6DF;border-radius:16px;
+  padding:20px;font-size:20px;font-weight:800;color:#1F2937;text-decoration:none;
+  box-shadow:0 1px 3px rgba(31,41,55,.06);transition:border-color .12s ease,transform .12s ease}
+.opt:active{transform:scale(.98);border-color:#D9480F}
+.opt .sub{display:block;font-size:13px;color:#6B7280;font-weight:500;margin-top:4px}
+.opt.zh .big{color:#D9480F}
+.opt.en .big{color:#1F2937}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="badge">AURORA × PROTIQUE REAL ESTATE</div>
+  <div class="emoji">🏠</div>
+  <h1>租客使用手册</h1>
+  <div class="en">Tenant Handbook</div>
+  <div class="divider"></div>
+  <div class="opts">
+    <a class="opt zh" href="zh/index.html"><span class="big">中文</span><span class="sub">进入中文版 · 入住须知、维修、退房等</span></a>
+    <a class="opt en" href="en/index.html"><span class="big">English</span><span class="sub">View in English · Move-in, maintenance, moving out</span></a>
+  </div>
+</div>
+</body>
+</html>""".replace("__OG__", og_image)
+
 if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
     zh_img = SITE_BASE + "/assets/og-cover.png"
     en_img = SITE_BASE + "/assets/og-cover-en.png"
-    build_site(zh, UI["zh"], base, "", zh_img)
+    open(os.path.join(base, "index.html"), "w", encoding="utf-8").write(build_chooser(zh_img))
+    build_site(zh, UI["zh"], os.path.join(base, "zh"), "../", zh_img)
     build_site(en, UI["en"], os.path.join(base, "en"), "../", en_img)
