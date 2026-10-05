@@ -109,6 +109,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -141,23 +150,24 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">退房</span><a class="lang" href="../en/index.html">EN</a></div>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">退房</span><a class="lang" href="../en/move-out.html">EN</a></div>
 <div class="wrap">
-<div class="langbar"><a href="../en/index.html">EN</a></div>
+
 <div class="section-head">
   <div class="emoji">🔑</div>
   <h1>退房</h1>
   <div class="desc">退房流程、退押金</div>
 </div>
-<div class="search-wrap" data-empty="没有找到相关问题，换个词试试">
+<div class="search-wrap" data-empty="没有找到匹配的答案，请联系你的 Property Manager" data-header="「{}」的搜索结果" data-one="1 条结果" data-many="{} 条结果" data-clear="清除">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 
+<div class="qa-ctrl"><button class="qa-btn" data-act="expand">展开全部</button><button class="qa-btn" data-act="collapse">收起全部</button></div>
 <details id="q1">
   <summary><span class="qicon">Q1</span>退房流程是什么？<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">PM 会给你发送 vacate guide，里面有退房注意事项，以及<span class="hl">约退房清洁</span>。我们合作的清洁，如果包了的项目有问题会返工到底，所以尽量选完整服务，减少来回返工。但清洁和 defect 是分开的——比如地毯被染色是洗不掉的，属于 defect，不是清洁的责任。记得跟清洁拿 receipt 再付清洁费，我们需要清洁的 receipt 才能安排退押金。</p>
+  <div class="ans"><p class="t">PM 会给你发送 vacate guide，里面有退房注意事项，以及<span class="hl">约退房清洁</span>。我们可以推荐合作的清洁公司——选完整服务可以减少来回返工。但清洁和 defect 是分开的——比如地毯被染色是洗不掉的，属于 defect，不是清洁的责任。你需要以合理清洁的状态退还房屋（考虑入住时的状况）；如根据你的租约情况需要专业清洁或地毯蒸洗，请保留收据作为凭证。</p>
 <p class="t"><span class="hl">退房清洁</span>完成后，搬家前记得不要断电，不然我们没办法检查房屋情况。电在 5 个工作日后可自行切断。</p>
 <p class="t">我们会在 5 个工作日内完成<span class="hl">退房检查</span>，并把相关房屋问题发给你。你买了的项目出问题可安排清洁免费返工；没买的项目出问题需要你重新清洁或赔偿 defect。</p>
 <p class="t">同时，需要你和新接手房子的人签署一份 consent form，划清房屋责任。</p>
@@ -168,13 +178,10 @@ footer b{color:var(--ink)}
 <script src="search-index.js"></script>
 <script src="../search.js"></script>
 <script>
-document.querySelectorAll('details').forEach(function(d){
-  d.addEventListener('toggle', function(){
-    if(d.open){
-      document.querySelectorAll('details[open]').forEach(function(o){
-        if(o!==d) o.removeAttribute('open');
-      });
-    }
+document.querySelectorAll('.qa-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var open = b.getAttribute('data-act') === 'expand';
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
   });
 });
 </script>

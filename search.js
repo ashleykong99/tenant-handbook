@@ -6,6 +6,10 @@
   var input = wrap.querySelector('.search-input');
   var panel = wrap.querySelector('.search-results');
   var emptyMsg = wrap.getAttribute('data-empty') || 'No results';
+  var headerTpl = wrap.getAttribute('data-header') || 'Search results for "{}"';
+  var oneMsg = wrap.getAttribute('data-one') || '1 result';
+  var manyMsg = wrap.getAttribute('data-many') || '{} results';
+  var clearMsg = wrap.getAttribute('data-clear') || 'Clear search';
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
@@ -28,10 +32,17 @@
   }
 
   function render(hits) {
+    var v = input.value.trim();
+    var head = '';
+    if (hits.length) {
+      var word = (hits.length === 1) ? oneMsg : manyMsg.replace('{}', hits.length);
+      head = '<div class="sr-head"><span>' + headerTpl.replace('{}', esc(v)) + ' — ' + word + '</span>' +
+             '<button class="clear" type="button">' + esc(clearMsg) + '</button></div>';
+    }
     if (!hits.length) {
       panel.innerHTML = '<div class="sr-empty">' + emptyMsg + '</div>';
     } else {
-      panel.innerHTML = hits.map(function (h) {
+      panel.innerHTML = head + hits.map(function (h) {
         return '<a class="sr-item" href="' + h.file + '#' + h.id + '">' +
           '<span class="sr-cat">' + esc(h.cat) + '</span>' +
           '<span class="sr-q">' + esc(h.q) + '</span>' +
@@ -41,7 +52,7 @@
     panel.style.display = 'block';
   }
 
-  input.addEventListener('input', function () {
+  function doSearch() {
     var v = input.value.trim();
     if (v.length < 1) {
       panel.innerHTML = '';
@@ -49,10 +60,19 @@
       return;
     }
     render(search(v));
-  });
+  }
 
-  input.addEventListener('focus', function () {
-    if (input.value.trim().length >= 1) render(search(input.value.trim()));
+  input.addEventListener('input', doSearch);
+  input.addEventListener('focus', doSearch);
+
+  panel.addEventListener('click', function (e) {
+    var c = e.target.closest('.clear');
+    if (c) {
+      input.value = '';
+      panel.innerHTML = '';
+      panel.style.display = 'none';
+      input.focus();
+    }
   });
 
   document.addEventListener('click', function (e) {

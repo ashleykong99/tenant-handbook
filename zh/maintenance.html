@@ -109,6 +109,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -141,20 +150,21 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">维修问题</span><a class="lang" href="../en/index.html">EN</a></div>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">维修问题</span><a class="lang" href="../en/maintenance.html">EN</a></div>
 <div class="wrap">
-<div class="langbar"><a href="../en/index.html">EN</a></div>
+
 <div class="section-head">
   <div class="emoji">🔧</div>
   <h1>维修问题</h1>
   <div class="desc">密码锁、家电、水电等</div>
 </div>
-<div class="search-wrap" data-empty="没有找到相关问题，换个词试试">
+<div class="search-wrap" data-empty="没有找到匹配的答案，请联系你的 Property Manager" data-header="「{}」的搜索结果" data-one="1 条结果" data-many="{} 条结果" data-clear="清除">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 <div class="note">⚠️ 所有报维修的前提：已阅读本手册并按要求操作后仍不起作用，下一步是拍照片和视频发给普道小南微信 Protique-leasing / WhatsApp 0422329166</div>
+<div class="qa-ctrl"><button class="qa-btn" data-act="expand">展开全部</button><button class="qa-btn" data-act="collapse">收起全部</button></div>
 <details id="q1">
   <summary><span class="qicon">Q1</span>我发现有东西坏了，如何报维修？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">如果是刚入住发现的，有可能是我们已知晓的问题，正在和前租客协商或等师傅排期维修/更换。如果是入住中后期发现的问题（入住 5 个工作日后），可以报告问题给 PM 并<span class="hl">附上照片和视频</span>。非紧急维修我们会在法律规定 14 天内完成，紧急维修争取两天内完成（紧急/非紧急的定义在于<span class="hl">是否影响最低出租标准</span>，包括但不限于漏水/爆炸/灶台完全不能用/马桶完全不能用/洗不了澡等，具体可网上查询）。由于澳洲人工贵，有些维修需要租客配合做初步排查，下面逐项列出可能出现的问题。</p></div>
@@ -379,13 +389,10 @@ footer b{color:var(--ink)}
 <script src="search-index.js"></script>
 <script src="../search.js"></script>
 <script>
-document.querySelectorAll('details').forEach(function(d){
-  d.addEventListener('toggle', function(){
-    if(d.open){
-      document.querySelectorAll('details[open]').forEach(function(o){
-        if(o!==d) o.removeAttribute('open');
-      });
-    }
+document.querySelectorAll('.qa-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var open = b.getAttribute('data-act') === 'expand';
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
   });
 });
 </script>

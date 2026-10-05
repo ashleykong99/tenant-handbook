@@ -109,6 +109,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -141,31 +150,32 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">合同与转租</span><a class="lang" href="../en/index.html">EN</a></div>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> 首页</a><span class="ttl">合同与转租</span><a class="lang" href="../en/contract.html">EN</a></div>
 <div class="wrap">
-<div class="langbar"><a href="../en/index.html">EN</a></div>
+
 <div class="section-head">
   <div class="emoji">📝</div>
   <h1>合同与转租</h1>
   <div class="desc">续租、加室友、转租</div>
 </div>
-<div class="search-wrap" data-empty="没有找到相关问题，换个词试试">
+<div class="search-wrap" data-empty="没有找到匹配的答案，请联系你的 Property Manager" data-header="「{}」的搜索结果" data-one="1 条结果" data-many="{} 条结果" data-clear="清除">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 
+<div class="qa-ctrl"><button class="qa-btn" data-act="expand">展开全部</button><button class="qa-btn" data-act="collapse">收起全部</button></div>
 <details id="q1">
   <summary><span class="qicon">Q1</span>合同快到期了，我可以续租吗？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">一般房东如果没有特别安排，同时你居住状况良好、没有对房子造成损坏、保持干净整洁，都可以续一年或半年。具体安排可以咨询 PM。</p></div>
 </details><details id="q2">
   <summary><span class="qicon">Q2</span>我在租的过程中有了一个室友，需要他的名字也上合同。<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">可以。把你室友的基本信息发给 PM（护照 or 驾照、签证 + COE or Medicare、银行存款证明 or payslip、申请表），等待审核。审核完成后，我们会出新的合同，合同更名有少量手续费需要支付。</p></div>
+  <div class="ans"><p class="t">可以。把你室友的基本信息发给 PM（护照 or 驾照、签证 + COE or Medicare、银行存款证明 or payslip、申请表），等待审核。审核完成后，我们会出新的合同；相关费用仅限于合理的实际成本，并以书面确认为准。</p></div>
 </details><details id="q3">
   <summary><span class="qicon">Q3</span>因不可抗力因素，我没办法继续租了，怎么办？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">可转租，寻找新的人接手。转租会产生一定费用，具体合同上有注明，等确认有人接手后，转租费可以选择单独转账，或退房后从 bond 押金里扣除。</p>
 <p class="t">你可以自行通过网络社交媒体发布广告，也可以拜托我们用 realestate.com 和 domain 等渠道发布招租广告，广告费 $330 一次性先支付，收款账号 O REAL（BSB 733003, Acc 727393）。</p>
-<p class="t">请注意：交了广告费并不意味着我们保证能替你找到新租客接手。合同到期前，合同上的承租人有义务承担租金直至合同结束。</p></div>
+<p class="t">请注意：交了广告费并不意味着我们保证能替你找到新租客接手。原租客须继续承担租金及相关费用，直到新租约开始或原租约以其他方式合法终止。</p></div>
 </details><details id="q4">
   <summary><span class="qicon">Q4</span>我找到新的人接手了，后面怎么操作？<span class="chev">›</span></summary>
   <div class="ans"><p class="t">请把你找到的人的基本信息发给 PM（护照 or 驾照、签证 + COE or Medicare、银行存款证明 or payslip、申请表），等待审核。审核通过后，我们会安排新的合同，待接手的人签好合同、支付完押金和第一个月租金后，你可以支付转租费、安排退房流程。</p></div>
@@ -175,13 +185,10 @@ footer b{color:var(--ink)}
 <script src="search-index.js"></script>
 <script src="../search.js"></script>
 <script>
-document.querySelectorAll('details').forEach(function(d){
-  d.addEventListener('toggle', function(){
-    if(d.open){
-      document.querySelectorAll('details[open]').forEach(function(o){
-        if(o!==d) o.removeAttribute('open');
-      });
-    }
+document.querySelectorAll('.qa-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var open = b.getAttribute('data-act') === 'expand';
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
   });
 });
 </script>

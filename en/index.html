@@ -109,6 +109,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -149,7 +158,7 @@ footer b{color:var(--ink)}
   <h1>Aurora × Protique Real Estate<br>Tenant Handbook</h1>
   <div class="sub">Please read before moving in. Check here first, then contact your Property Manager.</div>
 </div>
-<div class="search-wrap" data-empty="No matching questions — try another keyword">
+<div class="search-wrap" data-empty="No matching answer found. Contact your Property Manager." data-header="Search results for "{}"" data-one="1 result" data-many="{} results" data-clear="Clear search">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="Search: fridge / bond / key / sublet…" autocomplete="off">
   <div class="search-results"></div>
@@ -176,8 +185,8 @@ footer b{color:var(--ink)}
   <span class="n">6 questions</span>
 </a><a class="cat" href="contract.html">
   <span class="emoji">📝</span>
-  <span class="name">Contract &amp; Subletting</span>
-  <span class="desc">Renewal, roommates, subletting</span>
+  <span class="name">Lease Changes, Transfers &amp; Breaking a Lease</span>
+  <span class="desc">Renewal, roommates, transfers, subletting, breaking a lease</span>
   <span class="n">4 questions</span>
 </a><a class="cat" href="move-out.html">
   <span class="emoji">🔑</span>

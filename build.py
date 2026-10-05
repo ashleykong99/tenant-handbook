@@ -103,6 +103,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -138,10 +147,16 @@ UI = {
   "zh": {
     "lang": "zh-CN",
     "other_lang": "EN",
-    "other_href": "../en/index.html",
+    "other_dir": "en",
     "search_placeholder": "搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…",
     "back": "首页",
-    "no_results": "没有找到相关问题，换个词试试",
+    "no_results": "没有找到匹配的答案，请联系你的 Property Manager",
+    "search_header": "「{}」的搜索结果",
+    "search_one": "1 条结果",
+    "search_many": "{} 条结果",
+    "search_clear": "清除",
+    "expand_all": "展开全部",
+    "collapse_all": "收起全部",
     "video_label": "视频",
     "image_label": "图片",
     "open_pdf": "打开 PDF →",
@@ -155,10 +170,16 @@ UI = {
   "en": {
     "lang": "en",
     "other_lang": "中文",
-    "other_href": "../zh/index.html",
+    "other_dir": "zh",
     "search_placeholder": "Search: fridge / bond / key / sublet…",
     "back": "Home",
-    "no_results": "No matching questions — try another keyword",
+    "no_results": "No matching answer found. Contact your Property Manager.",
+    "search_header": "Search results for \"{}\"",
+    "search_one": "1 result",
+    "search_many": "{} results",
+    "search_clear": "Clear search",
+    "expand_all": "Expand all",
+    "collapse_all": "Collapse all",
     "video_label": "Video",
     "image_label": "Image",
     "open_pdf": "Open PDF →",
@@ -255,7 +276,7 @@ def render_blocks(blocks, ui, prefix):
     return "\n".join(parts)
 
 def search_bar(ui):
-    return f'''<div class="search-wrap" data-empty="{esc(ui["no_results"])}">
+    return f'''<div class="search-wrap" data-empty="{esc(ui["no_results"])}" data-header="{esc(ui["search_header"])}" data-one="{esc(ui["search_one"])}" data-many="{esc(ui["search_many"])}" data-clear="{esc(ui["search_clear"])}">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="{esc(ui["search_placeholder"])}" autocomplete="off">
   <div class="search-results"></div>
@@ -278,15 +299,16 @@ def flatten_blocks(blocks):
                 parts.append(m.get("label", ""))
     return " ".join(parts)
 
-def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=None, desc=None):
+def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=None, desc=None, cur_page="index.html"):
+    other = f"../{ui['other_dir']}/{cur_page}"
     top = ""
     if topbar:
-        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> {ui["back"]}</a><span class="ttl">{esc(topbar)}</span><a class="lang" href="{ui["other_href"]}">{ui["other_lang"]}</a></div>'''
+        top = f'''<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> {ui["back"]}</a><span class="ttl">{esc(topbar)}</span><a class="lang" href="{other}">{ui["other_lang"]}</a></div>'''
     if og_title is None:
         og_title = title
     if desc is None:
         desc = C.SITE_SUB
-    langbar = f'<div class="langbar"><a href="{ui["other_href"]}">{ui["other_lang"]}</a></div>'
+    langbar = f'<div class="langbar"><a href="{other}">{ui["other_lang"]}</a></div>' if topbar is None else ""
     return f"""<!DOCTYPE html>
 <html lang="{ui["lang"]}">
 <head>
@@ -346,6 +368,7 @@ def build_category(C, ui, prefix, og_image, c):
     note = ""
     if c.get("note"):
         note = f'<div class="note">⚠️ {esc(c["note"])}</div>'
+    ctrl = f'''<div class="qa-ctrl"><button class="qa-btn" data-act="expand">{ui["expand_all"]}</button><button class="qa-btn" data-act="collapse">{ui["collapse_all"]}</button></div>'''
     body = f'''<div class="section-head">
   <div class="emoji">{c["emoji"]}</div>
   <h1>{esc(c["title"])}</h1>
@@ -353,19 +376,18 @@ def build_category(C, ui, prefix, og_image, c):
 </div>
 {search_bar(ui)}
 {note}
+{ctrl}
 {"".join(qs)}'''
     return page(C, ui, f'{c["emoji"]} {c["title"]}', body, og_image, prefix,
                 script=SCRIPT, topbar=c["title"],
-                og_title=f'{c["title"]} · {C.SITE_TITLE}', desc=c["desc"])
+                og_title=f'{c["title"]} · {C.SITE_TITLE}', desc=c["desc"],
+                cur_page=f'{c["id"]}.html')
 
 SCRIPT = """<script>
-document.querySelectorAll('details').forEach(function(d){
-  d.addEventListener('toggle', function(){
-    if(d.open){
-      document.querySelectorAll('details[open]').forEach(function(o){
-        if(o!==d) o.removeAttribute('open');
-      });
-    }
+document.querySelectorAll('.qa-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var open = b.getAttribute('data-act') === 'expand';
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
   });
 });
 </script>"""

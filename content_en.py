@@ -89,7 +89,7 @@ CATEGORIES = [
           "The resident and removalist must register at the Concierge first",
           "Collect the relevant keys and moving route instructions",
           "Notify the Concierge and return the keys when finished",
-          "All luggage and packing waste must be removed by the resident or removalist",
+          "All packaging materials and moving waste must be removed by the resident or removalist",
           "The resident is liable for damage to the Loading Dock, lifts, lobbies and corridors",
         ]},
         {"t": "If the rules are not followed, the building may refuse the move and is not liable for removalist cancellation, waiting or other costs."},
@@ -153,7 +153,7 @@ CATEGORIES = [
           "The front desk can help contact you, but you must collect immediately at the Loading Dock",
           "Multiple large items may require a moving-lift booking",
           "The front desk may refuse if you cannot collect in time",
-          "Notify the front desk in advance when signing; oversized items still need someone else to receive them",
+          "Notify the front desk before the parcel arrives if you are overseas",
         ]},
         {"h": "Important Disclaimer"},
         {"list": [
@@ -258,7 +258,7 @@ CATEGORIES = [
           "No selling, booking for others, or external renting",
           "The booking resident must be present at all times",
           "Register and sign the confirmation form at the Concierge before use",
-          "One company may only book the same room once per day",
+          "Each apartment may only book the same room once per day",
           "No consecutive bookings",
           "Each facility may be booked up to 5 times per month",
           "Under-16s must be accompanied by an adult",
@@ -287,7 +287,7 @@ CATEGORIES = [
           "Bring your own towel",
           "Dry off before leaving the pool area",
           "Wet clothes and shoes must not be taken outside the pool area",
-          "No skinny-dipping",
+          "Appropriate swimwear must be worn at all times",
         ]},
         {"t": "Pregnant women, or people with heart, circulatory, respiratory, blood pressure, diabetes, kidney or other conditions, are not advised to use the steam room or sauna. Also wait until you have recovered after drinking, eating or exercising."},
       ],
@@ -342,7 +342,7 @@ CATEGORIES = [
     {
       "q": "There are small furniture/items I don't want — what do I do?",
       "blocks": [
-        {"t": "Tell your Property Manager what you don't want and ask for a copy of the 【Original Property Report】. This report records the property's condition before the landlord rented it out. Any furniture/items 【not recorded】 are mostly left by previous tenants, and you may dispose of them yourself (normally bulky items go to the apartment hard-rubbish collection with a booked moving lift — best to check with the Building Manager or front desk first; the PM is not responsible for this). Note: if there are special cases like furniture replacement or new landlord-supplied furniture, we will inform you separately."},
+        {"t": "Tell your Property Manager what you don't want and ask for a copy of the 【Entry Condition Report】. This report records the property's condition at the start of the tenancy. Do not remove or dispose of any furniture or items without written approval from your Property Manager, even if the item does not appear in the Entry Condition Report. Note: if there are special cases like furniture replacement or new landlord-supplied furniture, we will inform you separately."},
       ],
     },
     {
@@ -370,7 +370,19 @@ CATEGORIES = [
     {
       "q": "Something is broken — how do I report it?",
       "blocks": [
-        {"t": "If discovered just after moving in, we may already be aware of it and are negotiating with the previous tenant or waiting for a tradesperson. If discovered later (after 5 working days), report it to the PM with 【photos and videos】. Non-urgent repairs are completed within the legal 14 days; urgent repairs are aimed to be done within two days (urgent vs non-urgent depends on 【whether minimum rental standards are affected】, including but not limited to leaks, explosions, cooktop completely unusable, toilet completely unusable, unable to shower, etc. — search online for details). As Australian labour is expensive and some repairs need tenant cooperation for initial checks, common issues are listed below."},
+        {"t": "If discovered just after moving in, we may already be aware of it and are negotiating with the previous tenant or waiting for a tradesperson. If discovered later (after 5 working days), report it to the PM. Non-urgent repairs are completed within the legal 14 days; urgent repairs must be reported immediately and will be acted on as soon as reasonably possible — response and completion times depend on the nature of the issue, access, parts and contractor availability. Urgent vs non-urgent depends on 【whether minimum rental standards are affected】, including but not limited to leaks, explosions, cooktop completely unusable, toilet completely unusable, unable to shower, etc. — search online for details."},
+        {"h": "When reporting a repair, please include"},
+        {"list": [
+          "Property address",
+          "Renter's name",
+          "Problem description",
+          "When it started",
+          "Photos",
+          "Video showing the issue",
+          "Error code / model number",
+          "Available access times",
+          "Whether the property is currently safe",
+        ]},
       ],
     },
     {
@@ -648,8 +660,8 @@ CATEGORIES = [
 {
   "id": "contract",
   "emoji": "📝",
-  "title": "Contract & Subletting",
-  "desc": "Renewal, roommates, subletting",
+  "title": "Lease Changes, Transfers & Breaking a Lease",
+  "desc": "Renewal, roommates, transfers, subletting, breaking a lease",
   "questions": [
     {
       "q": "My lease is expiring — can I renew?",
@@ -660,15 +672,16 @@ CATEGORIES = [
     {
       "q": "I have a new roommate — how do I add them to the lease?",
       "blocks": [
-        {"t": "Yes. Send your roommate's details to the PM (passport or driver's licence, visa + COE or Medicare, bank statement or payslip, application form) for review. Once approved, we issue a new contract; there is a small fee for the name change."},
+        {"t": "Yes. Send your roommate's details to the PM (passport or driver's licence, visa + COE or Medicare, bank statement or payslip, application form) for review. Once approved, we issue a new contract; any fee is limited to reasonable actual costs, confirmed in writing."},
       ],
     },
     {
       "q": "Due to circumstances beyond my control I can't continue the lease — what now?",
       "blocks": [
-        {"t": "You can sublet by finding a new person to take over. Subletting incurs a fee as noted in the contract; once a replacement is confirmed, the fee can be paid separately or deducted from the bond after move-out."},
+        {"t": "Depending on the situation, this is usually handled as one of: a lease transfer / assignment (the outgoing renter exits and a new renter takes over), a change of renter (one person in a multi-person lease is replaced), subletting (you keep the lease and rent part of the property to someone else), or breaking the lease (ending the lease early and the agent re-lets the property). Talk to your PM about which applies — the legal requirements and process differ."},
+        {"t": "Any applicable fees are as noted in the contract and are limited to reasonable actual costs, confirmed in writing; once a replacement is confirmed, they can be paid separately or deducted from the bond after move-out."},
         {"t": "You can advertise on social media yourself, or ask us to advertise on realestate.com and domain. The advertising fee is $330 paid upfront, to O REAL (BSB 733003, Acc 727393)."},
-        {"t": "Note: paying the advertising fee does not guarantee we can find a replacement tenant. Until the contract ends, the tenant on the lease is liable for rent until it ends."},
+        {"t": "Note: paying the advertising fee does not guarantee we can find a replacement tenant. The outgoing renter remains responsible for rent and applicable costs until the replacement tenancy starts or the existing tenancy otherwise legally ends."},
       ],
     },
     {
@@ -688,7 +701,7 @@ CATEGORIES = [
     {
       "q": "What is the move-out process?",
       "blocks": [
-        {"t": "The PM will send you a vacate guide with move-out notes and 【exit cleaning booking】. Our partnered cleaners will redo any covered items that have issues, so choose the full service to minimise back-and-forth. Note that cleaning and defects are separate — e.g. a stained carpet cannot be washed out; that's a defect, not a cleaning issue. Get a receipt from the cleaner before paying; we need the cleaning receipt to arrange your bond refund."},
+        {"t": "The PM will send you a vacate guide with move-out notes and 【exit cleaning booking】. We can recommend a partnered cleaner — a full service reduces back-and-forth. Note that cleaning and defects are separate — e.g. a stained carpet cannot be washed out; that's a defect, not a cleaning issue. You must return the property in a reasonably clean condition, taking into account its condition at the start of the tenancy. If professional cleaning or carpet steam cleaning is required under your tenancy circumstances, please retain the receipt as evidence."},
         {"t": "After the 【exit clean】, don't disconnect power before moving out, or we can't inspect the property. You can disconnect electricity yourself after 5 working days."},
         {"t": "We complete the 【exit inspection】 within 5 working days and send you any property issues. Items you purchased (covered) can be re-cleaned free; uncovered items require you to re-clean or compensate for the defect."},
         {"t": "You'll also need to sign a consent form with the new incoming tenant to divide responsibility."},

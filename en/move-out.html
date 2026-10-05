@@ -109,6 +109,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -141,23 +150,24 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> Home</a><span class="ttl">Moving Out</span><a class="lang" href="../zh/index.html">中文</a></div>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> Home</a><span class="ttl">Moving Out</span><a class="lang" href="../zh/move-out.html">中文</a></div>
 <div class="wrap">
-<div class="langbar"><a href="../zh/index.html">中文</a></div>
+
 <div class="section-head">
   <div class="emoji">🔑</div>
   <h1>Moving Out</h1>
   <div class="desc">Move-out process, bond refund</div>
 </div>
-<div class="search-wrap" data-empty="No matching questions — try another keyword">
+<div class="search-wrap" data-empty="No matching answer found. Contact your Property Manager." data-header="Search results for "{}"" data-one="1 result" data-many="{} results" data-clear="Clear search">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="Search: fridge / bond / key / sublet…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 
+<div class="qa-ctrl"><button class="qa-btn" data-act="expand">Expand all</button><button class="qa-btn" data-act="collapse">Collapse all</button></div>
 <details id="q1">
   <summary><span class="qicon">Q1</span>What is the move-out process?<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">The PM will send you a vacate guide with move-out notes and <span class="hl">exit cleaning booking</span>. Our partnered cleaners will redo any covered items that have issues, so choose the full service to minimise back-and-forth. Note that cleaning and defects are separate — e.g. a stained carpet cannot be washed out; that's a defect, not a cleaning issue. Get a receipt from the cleaner before paying; we need the cleaning receipt to arrange your bond refund.</p>
+  <div class="ans"><p class="t">The PM will send you a vacate guide with move-out notes and <span class="hl">exit cleaning booking</span>. We can recommend a partnered cleaner — a full service reduces back-and-forth. Note that cleaning and defects are separate — e.g. a stained carpet cannot be washed out; that's a defect, not a cleaning issue. You must return the property in a reasonably clean condition, taking into account its condition at the start of the tenancy. If professional cleaning or carpet steam cleaning is required under your tenancy circumstances, please retain the receipt as evidence.</p>
 <p class="t">After the <span class="hl">exit clean</span>, don't disconnect power before moving out, or we can't inspect the property. You can disconnect electricity yourself after 5 working days.</p>
 <p class="t">We complete the <span class="hl">exit inspection</span> within 5 working days and send you any property issues. Items you purchased (covered) can be re-cleaned free; uncovered items require you to re-clean or compensate for the defect.</p>
 <p class="t">You'll also need to sign a consent form with the new incoming tenant to divide responsibility.</p>
@@ -168,13 +178,10 @@ footer b{color:var(--ink)}
 <script src="search-index.js"></script>
 <script src="../search.js"></script>
 <script>
-document.querySelectorAll('details').forEach(function(d){
-  d.addEventListener('toggle', function(){
-    if(d.open){
-      document.querySelectorAll('details[open]').forEach(function(o){
-        if(o!==d) o.removeAttribute('open');
-      });
-    }
+document.querySelectorAll('.qa-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var open = b.getAttribute('data-act') === 'expand';
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
   });
 });
 </script>

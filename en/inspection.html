@@ -109,6 +109,15 @@ details[open] summary .chev{transform:rotate(90deg)}
 .sr-cat{font-size:11.5px;color:var(--accent);font-weight:700}
 .sr-q{font-size:14.5px;font-weight:600}
 .sr-empty{padding:18px;text-align:center;color:var(--muted);font-size:14px}
+.sr-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--muted);font-weight:600}
+.sr-head .clear{border:0;background:none;color:var(--accent);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+
+/* qa expand/collapse */
+.qa-ctrl{display:flex;gap:8px;margin-top:14px}
+.qa-btn{flex:1;padding:9px 0;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--card);color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.qa-btn:active{border-color:var(--accent)}
 
 /* media */
 .media{margin-top:12px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#FBFBF9}
@@ -141,23 +150,24 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
-<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> Home</a><span class="ttl">Move-in Inspection</span><a class="lang" href="../zh/index.html">中文</a></div>
+<div class="topbar"><a class="back" href="index.html"><span class="arr">‹</span> Home</a><span class="ttl">Move-in Inspection</span><a class="lang" href="../zh/inspection.html">中文</a></div>
 <div class="wrap">
-<div class="langbar"><a href="../zh/index.html">中文</a></div>
+
 <div class="section-head">
   <div class="emoji">🔍</div>
   <h1>Move-in Inspection</h1>
   <div class="desc">Furniture, cleaning, replacing furniture</div>
 </div>
-<div class="search-wrap" data-empty="No matching questions — try another keyword">
+<div class="search-wrap" data-empty="No matching answer found. Contact your Property Manager." data-header="Search results for "{}"" data-one="1 result" data-many="{} results" data-clear="Clear search">
   <span class="search-ico">🔍</span>
   <input class="search-input" type="search" placeholder="Search: fridge / bond / key / sublet…" autocomplete="off">
   <div class="search-results"></div>
 </div>
 
+<div class="qa-ctrl"><button class="qa-btn" data-act="expand">Expand all</button><button class="qa-btn" data-act="collapse">Collapse all</button></div>
 <details id="q1">
   <summary><span class="qicon">Q1</span>There are small furniture/items I don't want — what do I do?<span class="chev">›</span></summary>
-  <div class="ans"><p class="t">Tell your Property Manager what you don't want and ask for a copy of the <span class="hl">Original Property Report</span>. This report records the property's condition before the landlord rented it out. Any furniture/items <span class="hl">not recorded</span> are mostly left by previous tenants, and you may dispose of them yourself (normally bulky items go to the apartment hard-rubbish collection with a booked moving lift — best to check with the Building Manager or front desk first; the PM is not responsible for this). Note: if there are special cases like furniture replacement or new landlord-supplied furniture, we will inform you separately.</p></div>
+  <div class="ans"><p class="t">Tell your Property Manager what you don't want and ask for a copy of the <span class="hl">Entry Condition Report</span>. This report records the property's condition at the start of the tenancy. Do not remove or dispose of any furniture or items without written approval from your Property Manager, even if the item does not appear in the Entry Condition Report. Note: if there are special cases like furniture replacement or new landlord-supplied furniture, we will inform you separately.</p></div>
 </details><details id="q2">
   <summary><span class="qicon">Q2</span>The apartment feels dirty — can the landlord/previous tenant reimburse cleaning or arrange a re-clean?<span class="chev">›</span></summary>
   <div class="ans"><p class="t">All apartments are professionally cleaned + carpet steam-cleaned before keys are handed over. You can ask your Property Manager for a cleaning receipt as proof.</p>
@@ -171,13 +181,10 @@ footer b{color:var(--ink)}
 <script src="search-index.js"></script>
 <script src="../search.js"></script>
 <script>
-document.querySelectorAll('details').forEach(function(d){
-  d.addEventListener('toggle', function(){
-    if(d.open){
-      document.querySelectorAll('details[open]').forEach(function(o){
-        if(o!==d) o.removeAttribute('open');
-      });
-    }
+document.querySelectorAll('.qa-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var open = b.getAttribute('data-act') === 'expand';
+    document.querySelectorAll('details').forEach(function(d){ d.open = open; });
   });
 });
 </script>
