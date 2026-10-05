@@ -2,7 +2,7 @@
 import html as _html
 import json
 import re
-from content import CATEGORIES, FOOTER, SITE_TITLE, SITE_SUB, VIDEO, PDF_OPEN, DOC_OPEN
+from content import CATEGORIES, FOOTER, SITE_TITLE, SITE_SUB, SITE_BRAND, SITE_NAME, VIDEO, PDF_OPEN, DOC_OPEN
 
 CSS = """
 :root{
@@ -279,7 +279,7 @@ def build_index():
 </a>''')
     body = f'''<div class="hero">
   <div class="kicker">TENANT HANDBOOK</div>
-  <h1>{esc(SITE_TITLE)}</h1>
+  <h1>{esc(SITE_BRAND)}<br>{esc(SITE_NAME)}</h1>
   <div class="sub">{esc(SITE_SUB)}</div>
 </div>
 {SEARCH_BAR}
