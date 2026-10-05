@@ -686,7 +686,7 @@ CATEGORIES = [
     {
       "q": "I have found someone to take over the rental agreement — what happens next?",
       "blocks": [
-        {"t": "Ask your Property Manager how the proposed renter should apply through the approved secure process. If the application is approved, the Property Manager will confirm whether the arrangement is a transfer, change of renter or sublet, and provide the required documents, RTBA bond steps, effective date and an itemised explanation of any lawful costs."},
+        {"t": "Send the proposed replacement renter's details to your Property Manager for assessment: passport or driver's licence; visa and Confirmation of Enrolment (COE), or Medicare card; bank statement or payslip; and a completed application form. Once the application is approved, we will prepare a new rental agreement. After the replacement renter has signed the agreement and paid the bond and first month's rent, you can pay the transfer fee and arrange the move-out process."},
       ],
     },
   ],
