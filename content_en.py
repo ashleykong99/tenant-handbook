@@ -559,10 +559,10 @@ CATEGORIES = [
     {
       "q": "I have lost a key — what should I do?",
       "blocks": [
-        {"t": "First, confirm whether you have lost the fob, which is the disc used for lift access, the physical key for your apartment door or the mailbox key."},
-        {"t": "If you have lost a fob, contact your Property Manager for the current replacement process and a written breakdown of any charge. Check the number on the back of any remaining fob and verify all payment details through a trusted channel before paying."},
-        {"t": "A lost apartment key may require replacement or rekeying for security. Contact your Property Manager for the available options and a written cost breakdown."},
-        {"t": "If you have lost the mailbox key, contact your Property Manager for the current replacement process and confirmed cost."},
+        {"t": "First, confirm whether you have lost the fob access card (the round disc used for the lifts), the hard key (the metal key used to open your apartment door), or the mailbox key."},
+        {"t": "If you have lost the fob, take a photo of any remaining fob and check whether there is a numerical code on the back. Two separate payments are required: $95 to O Real Investment Trust (BSB 033002, Acc 037975), and $110 to O REAL (BSB 733003, Acc 727393). Once we receive screenshots of the transfers, we will order a replacement from the building. It is usually available within two weeks."},
+        {"t": "If you have lost the hard key, it cannot be reordered and a replacement charge of $200 applies."},
+        {"t": "If you have lost the mailbox key, transfer $25.30 and we will order a replacement from a locksmith."},
       ],
     },
     {
