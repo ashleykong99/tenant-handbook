@@ -308,6 +308,8 @@ def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=
         og_title = title
     if desc is None:
         desc = C.SITE_SUB
+    current_dir = "zh" if ui["lang"] == "zh-CN" else "en"
+    canonical_url = f"{SITE_BASE}/{current_dir}/{cur_page}"
     langbar = f'<div class="langbar"><a href="{other}">{ui["other_lang"]}</a></div>' if topbar is None else ""
     return f"""<!DOCTYPE html>
 <html lang="{ui["lang"]}">
@@ -315,14 +317,23 @@ def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{esc(title)} · {esc(C.SITE_TITLE)}</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{canonical_url}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{esc(C.SITE_TITLE)}">
 <meta property="og:title" content="{esc(og_title)}">
 <meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="{canonical_url}">
 <meta property="og:image" content="{og_image}">
+<meta property="og:image:secure_url" content="{og_image}">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="1600">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:alt" content="{esc(og_title)}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{esc(og_title)}">
+<meta name="twitter:description" content="{esc(desc)}">
+<meta name="twitter:image" content="{og_image}">
 <style>{CSS}</style>
 </head>
 <body>
@@ -420,13 +431,23 @@ def build_chooser(og_image):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>租客使用手册 · Tenant Handbook</title>
+<meta name="description" content="Aurora × Protique Realty 租客使用手册 · Tenant Handbook">
+<link rel="canonical" href="https://ashleykong99.github.io/tenant-handbook/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurora × Protique Realty">
 <meta property="og:title" content="租客使用手册 · Tenant Handbook">
-<meta property="og:description" content="Aurora × Protique Realty">
+<meta property="og:description" content="Aurora × Protique Realty 租客使用手册 · Tenant Handbook">
+<meta property="og:url" content="https://ashleykong99.github.io/tenant-handbook/">
 <meta property="og:image" content="__OG__">
+<meta property="og:image:secure_url" content="__OG__">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="1600">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:alt" content="租客使用手册 · Tenant Handbook">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="租客使用手册 · Tenant Handbook">
+<meta name="twitter:description" content="Aurora × Protique Realty 租客使用手册 · Tenant Handbook">
+<meta name="twitter:image" content="__OG__">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#F5F3F0;color:#1F2937;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Helvetica Neue",sans-serif;
@@ -465,8 +486,8 @@ h1{font-size:32px;font-weight:800;margin-top:16px;letter-spacing:1px}
 
 if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
-    zh_img = SITE_BASE + "/assets/og-cover.png"
-    en_img = SITE_BASE + "/assets/og-cover-en.png"
+    zh_img = SITE_BASE + "/assets/og-cover-wechat.png"
+    en_img = SITE_BASE + "/assets/og-cover-en-wechat.png"
     open(os.path.join(base, "index.html"), "w", encoding="utf-8").write(build_chooser(zh_img))
     build_site(zh, UI["zh"], os.path.join(base, "zh"), "../", zh_img)
     build_site(en, UI["en"], os.path.join(base, "en"), "../", en_img)
