@@ -666,22 +666,21 @@ CATEGORIES = [
     {
       "q": "My rental agreement is expiring — can I renew it?",
       "blocks": [
-        {"t": "Contact your Property Manager before the fixed term ends to discuss whether a further fixed-term agreement will be offered or whether the agreement may continue periodically. Any change must be confirmed in writing."},
+        {"t": "Generally, if the rental provider has no other plans and you have looked after the property well, caused no damage and kept it clean and tidy, you may renew the rental agreement for either 12 months or 6 months. Please contact your Property Manager to discuss the available options."},
       ],
     },
     {
       "q": "I have a new housemate — how do I add them to the rental agreement?",
       "blocks": [
-        {"t": "Ask your Property Manager what information is reasonably required to assess the proposed renter, and provide it through the approved secure application process. If approved, the parties will document the change by a transfer, variation or new rental agreement, as appropriate. Any lawful cost will be explained and confirmed in writing."},
+        {"t": "Yes. Send your housemate's details to your Property Manager for assessment: passport or driver's licence; visa and Confirmation of Enrolment (COE), or Medicare card; bank statement or payslip; and a completed application form. Once the application is approved, we will prepare a new rental agreement. Any related fee will be limited to the reasonable actual cost and confirmed in writing."},
       ],
     },
     {
       "q": "I cannot continue my rental agreement due to circumstances beyond my control — what should I do?",
       "blocks": [
-        {"t": "Depending on the circumstances, the matter is usually handled in one of four ways: a rental agreement transfer or assignment, where the outgoing renter leaves and a new renter takes over; a change of renter, where one person on a multi-renter agreement is replaced; subletting, where you remain on the rental agreement and rent part of the property to someone else; or early termination, where the rental agreement ends early and the Property Manager re-lets the property. Ask your Property Manager which option applies, as the legal requirements and process differ."},
-        {"t": "Any transfer, assignment or early-termination costs must be lawful, reasonably incurred and supported by an itemised explanation. Money may be deducted from the bond only through the RTBA process with the renter's agreement or an appropriate VCAT order."},
-        {"t": "You may advertise on social media yourself or ask us to advertise on realestate.com.au and Domain. Before approving paid advertising, obtain a written quote and explanation of the actual advertising cost. Verify payment details through a trusted channel."},
-        {"t": "Paying an advertising cost does not guarantee that a replacement renter will be found. Responsibility for rent and other lawful losses depends on whether the arrangement is a transfer, sublet or early termination. For early termination, the rental provider must take reasonable steps to minimise loss."},
+        {"t": "You may find a replacement renter to take over the rental agreement. A transfer fee may apply, as specified in your rental agreement. Once a replacement renter has been confirmed, the fee may be paid separately or deducted from the bond after you move out."},
+        {"t": "You may advertise on social media yourself, or ask us to advertise the property through platforms such as realestate.com.au and Domain. The advertising fee is a one-off payment of $330, payable in advance to O REAL (BSB 733003, Acc 727393)."},
+        {"t": "Please note that paying the advertising fee does not guarantee that we will find a replacement renter. The outgoing renter remains responsible for rent and any related costs until the new rental agreement begins or the existing rental agreement otherwise legally ends."},
       ],
     },
     {
