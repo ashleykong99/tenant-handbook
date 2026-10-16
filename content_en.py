@@ -500,16 +500,6 @@ CATEGORIES = [
       ],
     },
     {
-      "q": "What should I do if the toilet seat is misaligned?",
-      "blocks": [
-        {"media": [
-          V("1ugDYpdDQ_6Jl0Q5IOWOJOHvo2kB2mkzM", "Toilet lid removal"),
-          V("1Lho8xOBrzWpeMKdEt-iSOO9xMYGBbhNc", "Toilet repair guide"),
-          V("14Cd9tVAQ3oTwm0lyQl7L0AUiqYXjisBk", "Loose toilet seat"),
-        ]},
-      ],
-    },
-    {
       "q": "What should I do if the tap has fallen off / the basin button will not pop up?",
       "blocks": [
         {"media": [

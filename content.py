@@ -504,16 +504,6 @@ CATEGORIES = [
       ],
     },
     {
-      "q": "马桶盖错位？",
-      "blocks": [
-        {"media": [
-          V("1ugDYpdDQ_6Jl0Q5IOWOJOHvo2kB2mkzM", "马桶开盖"),
-          V("1Lho8xOBrzWpeMKdEt-iSOO9xMYGBbhNc", "修马桶知识点"),
-          V("14Cd9tVAQ3oTwm0lyQl7L0AUiqYXjisBk", "马桶盖松了"),
-        ]},
-      ],
-    },
-    {
       "q": "水龙头掉落？/ 洗手盆按钮起不来怎么办？",
       "blocks": [
         {"media": [
