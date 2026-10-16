@@ -14,11 +14,16 @@ def IMG(src, label): return {"type": "image", "src": src, "label": label}
 
 CATEGORIES = [
 {
-  "id": "notice",
-  "emoji": "📋",
-  "title": "入住须知",
-  "desc": "前台、门禁、快递、设施、搬家、垃圾",
-  "questions": [
+  "id": "guide",
+  "emoji": "📘",
+  "title": "入住指南",
+  "desc": "大楼须知与房屋检查",
+  "sections": [
+    {
+      "id": "building",
+      "emoji": "🏢",
+      "title": "大楼须知",
+      "questions": [
     {
       "q": "大楼前台及主要联系人",
       "blocks": [
@@ -336,14 +341,13 @@ CATEGORIES = [
         ]},
       ],
     },
-  ],
-},
-{
-  "id": "inspection",
-  "emoji": "🔍",
-  "title": "入住检查",
-  "desc": "家具、清洁、换家具",
-  "questions": [
+      ],
+    },
+    {
+      "id": "inspection",
+      "emoji": "🔍",
+      "title": "房屋检查",
+      "questions": [
     {
       "q": "房子里有一些小家具/杂物我不想要，怎么办？",
       "blocks": [
@@ -361,6 +365,8 @@ CATEGORIES = [
       "q": "想换个床垫/沙发/别的家具，可以吗？",
       "blocks": [
         {"t": "我们理解每个人对家具有自己的偏好。如果有强烈更换意愿，请先找到和现家具款式、价格【相似度高】的产品，发送给 Property Manager 征得同意。得到允许后，请自行安排丢弃（步骤同上）和安排新家具进场（记得和大楼 BM 或前台沟通预约电梯，PM 对此不负责任）。"},
+      ],
+    },
       ],
     },
   ],

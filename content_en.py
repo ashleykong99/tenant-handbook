@@ -10,11 +10,16 @@ def IMG(src, label): return {"type": "image", "src": src, "label": label}
 
 CATEGORIES = [
 {
-  "id": "notice",
-  "emoji": "📋",
+  "id": "guide",
+  "emoji": "📘",
   "title": "Move-in Guide",
-  "desc": "Front desk, access, parcels, facilities, moving and waste",
-  "questions": [
+  "desc": "Building information and property inspection",
+  "sections": [
+    {
+      "id": "building",
+      "emoji": "🏢",
+      "title": "Building Information",
+      "questions": [
     {
       "q": "Building Front Desk & Key Contacts",
       "blocks": [
@@ -332,14 +337,13 @@ CATEGORIES = [
         ]},
       ],
     },
-  ],
-},
-{
-  "id": "inspection",
-  "emoji": "🔍",
-  "title": "Move-in Inspection",
-  "desc": "Furniture, cleaning and furniture replacement",
-  "questions": [
+      ],
+    },
+    {
+      "id": "inspection",
+      "emoji": "🔍",
+      "title": "Property Inspection",
+      "questions": [
     {
       "q": "What should I do with small items or furniture I do not want?",
       "blocks": [
@@ -357,6 +361,8 @@ CATEGORIES = [
       "q": "Can I replace a mattress, sofa or other item of furniture?",
       "blocks": [
         {"t": "We understand that everyone has their own furniture preferences. If you strongly wish to replace an item, first find a product that is 【highly similar】 in style and price to the current furniture and send it to the Property Manager for approval. Once permission is given, arrange disposal yourself (following the steps above) and arrange for the new furniture to be brought in (remember to contact the building BM or front desk to book the lift; the PM is not responsible for this)."},
+      ],
+    },
       ],
     },
   ],

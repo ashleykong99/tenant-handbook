@@ -86,8 +86,10 @@
   if (h && h.length > 1) {
     var el = document.querySelector(h);
     if (el && el.tagName === 'DETAILS') {
-      el.open = true;
+      var parentSection = el.closest('details.subsection');
+      if (parentSection && parentSection !== el) parentSection.open = true;
       setTimeout(function () {
+        el.open = true;
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 200);
     }

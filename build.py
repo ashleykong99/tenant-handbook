@@ -72,8 +72,20 @@ summary::-webkit-details-marker{display:none}
 summary .qicon{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);
   color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px}
 summary .chev{margin-left:auto;color:var(--muted);font-size:15px;transition:transform .18s ease;flex-shrink:0}
-details[open] summary .chev{transform:rotate(90deg)}
+details[open] > summary .chev{transform:rotate(90deg)}
 .ans{padding:2px 18px 18px;font-size:15.5px;color:#374151}
+
+/* grouped subsections */
+.subsections{margin-top:16px}
+.subsection{background:#F8F7F4;border-color:#DDD8D0;box-shadow:none;margin-top:14px}
+.subsection > summary{padding:18px;background:#F8F7F4;gap:13px}
+.subsection > summary .subemoji{font-size:27px;line-height:1;flex-shrink:0}
+.subsection > summary .submeta{display:flex;flex-direction:column;gap:3px;min-width:0}
+.subsection > summary .subtitle{font-size:18px;font-weight:800;color:var(--ink)}
+.subsection > summary .subcount{font-size:12.5px;font-weight:600;color:var(--muted)}
+.subsection > .subquestions{padding:0 12px 14px}
+.subsection > .subquestions > details{background:var(--card);box-shadow:none;margin-top:10px}
+.subsection > .subquestions > details > summary{padding:15px 14px}
 .ans .t{margin-top:10px}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
@@ -357,11 +369,26 @@ def page(C, ui, title, body, og_image, prefix, script="", topbar=None, og_title=
 </body>
 </html>"""
 
+def category_sections(c):
+    """Return explicit subsections, or one implicit section for ordinary categories."""
+    if c.get("sections"):
+        return c["sections"]
+    return [{"id": "", "title": c["title"], "emoji": c["emoji"], "questions": c.get("questions", [])}]
+
+
+def category_question_count(c):
+    return sum(len(s["questions"]) for s in category_sections(c))
+
+
+def question_count_text(ui, n):
+    return ui["n_one"] if n == 1 else ui["n_questions"].format(n)
+
+
 def build_index(C, ui, prefix, og_image):
     cards = []
     for c in C.CATEGORIES:
-        n = len(c["questions"])
-        count = ui["n_one"] if n == 1 else ui["n_questions"].format(n)
+        n = category_question_count(c)
+        count = question_count_text(ui, n)
         cards.append(f'''<a class="cat" href="{c["id"]}.html">
   <span class="emoji">{c["emoji"]}</span>
   <span class="name">{esc(c["title"])}</span>
@@ -377,13 +404,29 @@ def build_index(C, ui, prefix, og_image):
 <div class="cats">{"".join(cards)}</div>'''
     return page(C, ui, C.SITE_TITLE, body, og_image, prefix)
 
-def build_category(C, ui, prefix, og_image, c):
-    qs = []
-    for i, q in enumerate(c["questions"], 1):
-        qs.append(f'''<details id="q{i}">
-  <summary><span class="qicon">Q{i}</span>{esc(q["q"])}<span class="chev">›</span></summary>
+
+def render_question(q, display_num, anchor, ui, prefix):
+    return f'''<details id="{anchor}">
+  <summary><span class="qicon">Q{display_num}</span>{esc(q["q"])}<span class="chev">›</span></summary>
   <div class="ans">{render_blocks(q["blocks"], ui, prefix)}</div>
+</details>'''
+
+
+def build_category(C, ui, prefix, og_image, c):
+    if c.get("sections"):
+        section_html = []
+        for s in c["sections"]:
+            qs = [render_question(q, i, f'{s["id"]}-q{i}', ui, prefix)
+                  for i, q in enumerate(s["questions"], 1)]
+            count = question_count_text(ui, len(s["questions"]))
+            section_html.append(f'''<details class="subsection" id="{s["id"]}">
+  <summary><span class="subemoji">{s.get("emoji", "📌")}</span><span class="submeta"><span class="subtitle">{esc(s["title"])}</span><span class="subcount">{count}</span></span><span class="chev">›</span></summary>
+  <div class="subquestions">{"".join(qs)}</div>
 </details>''')
+        content = f'<div class="subsections">{"".join(section_html)}</div>'
+    else:
+        content = "".join(render_question(q, i, f'q{i}', ui, prefix)
+                          for i, q in enumerate(c["questions"], 1))
     note = ""
     if c.get("note"):
         note = f'<div class="note">⚠️ {esc(c["note"])}</div>'
@@ -396,7 +439,7 @@ def build_category(C, ui, prefix, og_image, c):
 {search_bar(ui)}
 {note}
 {ctrl}
-{"".join(qs)}'''
+{content}'''
     return page(C, ui, f'{c["emoji"]} {c["title"]}', body, og_image, prefix,
                 script=SCRIPT, topbar=c["title"],
                 og_title=f'{c["title"]} · {C.SITE_TITLE}', desc=c["desc"],
@@ -414,21 +457,31 @@ document.querySelectorAll('.qa-btn').forEach(function(b){
 def build_search_index(C):
     entries = []
     for c in C.CATEGORIES:
-        for i, q in enumerate(c["questions"], 1):
-            entries.append({
-                "cat": c["title"],
-                "file": c["id"] + ".html",
-                "id": "q%d" % i,
-                "q": q["q"],
-                "t": flatten_blocks(q["blocks"]),
-            })
+        grouped = bool(c.get("sections"))
+        for s in category_sections(c):
+            for i, q in enumerate(s["questions"], 1):
+                entries.append({
+                    "cat": c["title"] + (" · " + s["title"] if grouped else ""),
+                    "file": c["id"] + ".html",
+                    "id": (s["id"] + "-q%d" % i) if grouped else ("q%d" % i),
+                    "q": q["q"],
+                    "t": flatten_blocks(q["blocks"]),
+                })
     return "window.SEARCH_INDEX = " + json.dumps(entries, ensure_ascii=False) + ";"
+
+
+def redirect_page(target):
+    safe = esc(target)
+    return f'''<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url={safe}"><link rel="canonical" href="{safe}"><title>Redirecting…</title></head><body><p><a href="{safe}">Continue</a></p><script>location.replace({json.dumps(target)});</script></body></html>'''
+
 
 def build_site(C, ui, out_dir, prefix, og_image):
     os.makedirs(out_dir, exist_ok=True)
     open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(build_index(C, ui, prefix, og_image))
     for c in C.CATEGORIES:
         open(os.path.join(out_dir, c["id"] + ".html"), "w", encoding="utf-8").write(build_category(C, ui, prefix, og_image, c))
+    open(os.path.join(out_dir, "notice.html"), "w", encoding="utf-8").write(redirect_page("guide.html#building"))
+    open(os.path.join(out_dir, "inspection.html"), "w", encoding="utf-8").write(redirect_page("guide.html#inspection"))
     open(os.path.join(out_dir, "search-index.js"), "w", encoding="utf-8").write(build_search_index(C))
     print(f"generated [{ui['lang']}] -> {out_dir}")
 

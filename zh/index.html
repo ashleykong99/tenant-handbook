@@ -87,8 +87,20 @@ summary::-webkit-details-marker{display:none}
 summary .qicon{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);
   color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:15px}
 summary .chev{margin-left:auto;color:var(--muted);font-size:15px;transition:transform .18s ease;flex-shrink:0}
-details[open] summary .chev{transform:rotate(90deg)}
+details[open] > summary .chev{transform:rotate(90deg)}
 .ans{padding:2px 18px 18px;font-size:15.5px;color:#374151}
+
+/* grouped subsections */
+.subsections{margin-top:16px}
+.subsection{background:#F8F7F4;border-color:#DDD8D0;box-shadow:none;margin-top:14px}
+.subsection > summary{padding:18px;background:#F8F7F4;gap:13px}
+.subsection > summary .subemoji{font-size:27px;line-height:1;flex-shrink:0}
+.subsection > summary .submeta{display:flex;flex-direction:column;gap:3px;min-width:0}
+.subsection > summary .subtitle{font-size:18px;font-weight:800;color:var(--ink)}
+.subsection > summary .subcount{font-size:12.5px;font-weight:600;color:var(--muted)}
+.subsection > .subquestions{padding:0 12px 14px}
+.subsection > .subquestions > details{background:var(--card);box-shadow:none;margin-top:10px}
+.subsection > .subquestions > details > summary{padding:15px 14px}
 .ans .t{margin-top:10px}
 .ans .t:first-child{margin-top:0}
 .ans b{font-weight:700}
@@ -172,16 +184,11 @@ footer b{color:var(--ink)}
   <input class="search-input" type="search" placeholder="搜索问题，如：冰箱 / 押金 / 钥匙 / 转租…" autocomplete="off">
   <div class="search-results"></div>
 </div>
-<div class="cats"><a class="cat" href="notice.html">
-  <span class="emoji">📋</span>
-  <span class="name">入住须知</span>
-  <span class="desc">前台、门禁、快递、设施、搬家、垃圾</span>
-  <span class="n">10 个问题</span>
-</a><a class="cat" href="inspection.html">
-  <span class="emoji">🔍</span>
-  <span class="name">入住检查</span>
-  <span class="desc">家具、清洁、换家具</span>
-  <span class="n">3 个问题</span>
+<div class="cats"><a class="cat" href="guide.html">
+  <span class="emoji">📘</span>
+  <span class="name">入住指南</span>
+  <span class="desc">大楼须知与房屋检查</span>
+  <span class="n">13 个问题</span>
 </a><a class="cat" href="maintenance.html">
   <span class="emoji">🔧</span>
   <span class="name">维修问题</span>
