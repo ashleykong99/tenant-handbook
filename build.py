@@ -234,6 +234,14 @@ def render_media_block(items, ui, prefix):
   <div class="cover-wrap"><img src="{cover}" alt="{esc(m["label"])}" loading="lazy"></div>
   <div class="meta"><span class="ic">📄</span><span class="lbl">{esc(m["label"])}</span><span class="open">{ui["open_pdf"]}</span></div>
 </a>''')
+        elif t == "local_pdf":
+            url = asset(prefix, m["src"])
+            cover = asset(prefix, m["cover"])
+            out.append(f'''<a class="media pdf" href="{url}" target="_blank" rel="noopener">
+  <div class="mlabel">📄 PDF · {esc(m["label"])}</div>
+  <div class="cover-wrap"><img src="{cover}" alt="{esc(m["label"])}" loading="lazy"></div>
+  <div class="meta"><span class="ic">📄</span><span class="lbl">{esc(m["label"])}</span><span class="open">{ui["open_pdf"]}</span></div>
+</a>''')
         elif t == "doc":
             url = zh.DOC_OPEN.format(m["id"])
             out.append(f'''<a class="media link" href="{url}" target="_blank" rel="noopener">

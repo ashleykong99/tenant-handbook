@@ -3,6 +3,7 @@
 
 def V(i, label): return {"type": "video", "id": i, "label": label}
 def P(i, cover, label): return {"type": "pdf", "id": i, "cover": cover, "label": label}
+def LP(src, cover, label): return {"type": "local_pdf", "src": src, "cover": cover, "label": label}
 def D(i, label): return {"type": "doc", "id": i, "label": label}
 def L(i, label): return {"type": "link", "id": i, "label": label}
 def IMG(src, label): return {"type": "image", "src": src, "label": label}
@@ -389,10 +390,9 @@ CATEGORIES = [
     {
       "q": "How do I change the digital lock passcode?",
       "blocks": [
-        {"t": "First use the key to open the door. With the 【front door open】, follow the video and document below step by step. The initial passcode is 【1234#】."},
+        {"t": "First use the key to open the door. With the 【front door open】, follow the flowchart below step by step. After initialization, the passcode is 【1234】."},
         {"media": [
-          V("10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F", "Digital lock setup video"),
-          P("19ld0-78T3KH2O7qqolz6wZoATfWT8N5C", "assets/cover-samsung-lock.png", "Samsung digital lock form"),
+          LP("assets/samsung-shs-h505-flowchart-zh.pdf", "assets/samsung-shs-h505-flowchart-zh.png", "Samsung SHS-H505 digital lock flowchart (Chinese)"),
         ]},
       ],
     },

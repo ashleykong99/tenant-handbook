@@ -7,6 +7,7 @@ DOC_OPEN = "https://docs.google.com/document/d/{}/edit?usp=sharing"
 
 def V(i, label): return {"type": "video", "id": i, "label": label}
 def P(i, cover, label): return {"type": "pdf", "id": i, "cover": cover, "label": label}
+def LP(src, cover, label): return {"type": "local_pdf", "src": src, "cover": cover, "label": label}
 def D(i, label): return {"type": "doc", "id": i, "label": label}
 def L(i, label): return {"type": "link", "id": i, "label": label}
 def IMG(src, label): return {"type": "image", "src": src, "label": label}
@@ -393,10 +394,9 @@ CATEGORIES = [
     {
       "q": "怎么更改密码锁？",
       "blocks": [
-        {"t": "先用钥匙开门，在【大门打开】的情况下，按照下面的视频和文件一步步完成。初始密码为【1234#】。"},
+        {"t": "先用钥匙开门，在【大门打开】的情况下，按照下面的流程图一步步完成。初始化后的密码为【1234】。"},
         {"media": [
-          V("10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F", "电子密码设置教程"),
-          P("19ld0-78T3KH2O7qqolz6wZoATfWT8N5C", "assets/cover-samsung-lock.png", "Samsung 电子锁表单"),
+          LP("assets/samsung-shs-h505-flowchart-zh.pdf", "assets/samsung-shs-h505-flowchart-zh.png", "Samsung SHS-H505 电子锁操作流程图（中文）"),
         ]},
       ],
     },
