@@ -655,7 +655,7 @@ CATEGORIES = [
 {
   "id": "contract",
   "emoji": "📝",
-  "title": "Renewal & Subletting",
+  "title": "Renewal & Lease Transfer",
   "desc": "Renewals, adding a housemate and subletting",
   "questions": [
     {
