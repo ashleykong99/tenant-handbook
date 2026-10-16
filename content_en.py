@@ -561,6 +561,21 @@ CATEGORIES = [
       ],
     },
     {
+      "q": "Who should I contact for urgent repairs on weekends or public holidays?",
+      "blocks": [
+        {"t": "On weekends or public holidays, if the Property Manager cannot be reached and there is an urgent repair (urgent situations only, such as a water leak, electrical leakage or being locked out without your keys), contact the following repairers:"},
+        {"table": {
+          "header": ["Trade", "Name", "Phone"],
+          "rows": [
+            ["Handyman", "Alvis", "0416 971 157"],
+            ["Electrical", "Wang", "0415 264 700"],
+            ["Plumbing", "David", "0430 014 680"],
+            ["Locksmith", "Paul", "0410 974 734"],
+          ],
+        }},
+      ],
+    },
+    {
       "q": "What should I do during a power outage?",
       "blocks": [
         {"list": [
@@ -631,21 +646,6 @@ CATEGORIES = [
             ["Health Direct", "1800 022 222"],
             ["Lifeline (crisis support)", "13 11 14"],
             ["Victoria Legal Aid", "1300 792 387"],
-          ],
-        }},
-      ],
-    },
-    {
-      "q": "Who should I contact for urgent repairs on weekends or public holidays?",
-      "blocks": [
-        {"t": "On weekends or public holidays, if the Property Manager cannot be reached and there is an urgent repair (urgent situations only, such as a water leak, electrical leakage or being locked out without your keys), contact the following repairers:"},
-        {"table": {
-          "header": ["Trade", "Name", "Phone"],
-          "rows": [
-            ["Handyman", "Alvis", "0416 971 157"],
-            ["Electrical", "Wang", "0415 264 700"],
-            ["Plumbing", "David", "0430 014 680"],
-            ["Locksmith", "Paul", "0410 974 734"],
           ],
         }},
       ],
