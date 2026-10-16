@@ -384,9 +384,16 @@ def question_count_text(ui, n):
     return ui["n_one"] if n == 1 else ui["n_questions"].format(n)
 
 
+def ordered_categories(C):
+    """Keep the emergency category as the final handbook section."""
+    return [c for c in C.CATEGORIES if c["id"] != "emergency"] + [
+        c for c in C.CATEGORIES if c["id"] == "emergency"
+    ]
+
+
 def build_index(C, ui, prefix, og_image):
     cards = []
-    for c in C.CATEGORIES:
+    for c in ordered_categories(C):
         n = category_question_count(c)
         count = question_count_text(ui, n)
         cards.append(f'''<a class="cat" href="{c["id"]}.html">
@@ -456,7 +463,7 @@ document.querySelectorAll('.qa-btn').forEach(function(b){
 
 def build_search_index(C):
     entries = []
-    for c in C.CATEGORIES:
+    for c in ordered_categories(C):
         grouped = bool(c.get("sections"))
         for s in category_sections(c):
             for i, q in enumerate(s["questions"], 1):
@@ -478,7 +485,7 @@ def redirect_page(target):
 def build_site(C, ui, out_dir, prefix, og_image):
     os.makedirs(out_dir, exist_ok=True)
     open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(build_index(C, ui, prefix, og_image))
-    for c in C.CATEGORIES:
+    for c in ordered_categories(C):
         open(os.path.join(out_dir, c["id"] + ".html"), "w", encoding="utf-8").write(build_category(C, ui, prefix, og_image, c))
     open(os.path.join(out_dir, "notice.html"), "w", encoding="utf-8").write(redirect_page("guide.html#building"))
     open(os.path.join(out_dir, "inspection.html"), "w", encoding="utf-8").write(redirect_page("guide.html#inspection"))
