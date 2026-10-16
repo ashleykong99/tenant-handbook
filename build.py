@@ -40,7 +40,7 @@ a{color:var(--accent);text-decoration:none}
 .hero{padding:28px 4px 8px}
 .hero .kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.5px}
 .hero h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-top:6px;line-height:1.25}
-.hero .sub{font-size:15px;color:var(--muted);margin-top:8px}
+.hero .sub{font-size:15px;color:var(--muted);margin-top:8px;white-space:pre-line;line-height:1.7}
 
 /* category grid (landing) */
 .cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}

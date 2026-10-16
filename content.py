@@ -719,4 +719,4 @@ FOOTER = "如有疑问请联系你的 Property Manager"
 SITE_BRAND = "Aurora极光 × 普道地产"
 SITE_NAME = "租客使用手册"
 SITE_TITLE = SITE_BRAND + SITE_NAME
-SITE_SUB = "入住前请先阅读，遇到问题先查这里，再联系 Property Manager。email：leasing@protique.com.au　wechat：Protique-leasing　whatsapp：0422329166"
+SITE_SUB = "入住前请先阅读，遇到问题先查这里，再联系 Property Manager。\nemail：leasing@protique.com.au\nwechat：Protique-leasing\nwhatsapp：0422329166"
