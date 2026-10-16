@@ -372,7 +372,7 @@ CATEGORIES = [
   "emoji": "🔧",
   "title": "Maintenance",
   "desc": "Digital locks, appliances, plumbing, electrical and more",
-  "note": "Before reporting any repair: read this handbook and follow the instructions. If the item still does not work, take photos and videos and send them to Protique Xiao Nan on WeChat at Protique-leasing / WhatsApp 0422329166",
+  "note": "Before reporting any repair: read this handbook and follow the instructions. If the item still does not work, take photos and videos and send them to Protique Xiao Nan (Ashley)",
   "questions": [
     {
       "q": "Something is broken — how do I report it?",
