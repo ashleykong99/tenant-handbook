@@ -392,7 +392,7 @@ CATEGORIES = [
       "blocks": [
         {"t": "First use the key to open the door. With the 【front door open】, follow the flowchart below step by step. After initialization, the passcode is 【1234】."},
         {"media": [
-          LP("assets/samsung-shs-h505-essential-procedures-en-v2.pdf", "assets/samsung-shs-h505-essential-procedures-en-v2.png", "Samsung SHS-H505 Essential Procedures (English PDF)"),
+          LP("assets/Samsung_SHS-H505_Digital_Lock_Flowchart_EN.pdf", "assets/Samsung_SHS-H505_Digital_Lock_Flowchart_EN.png", "Samsung SHS-H505 Digital Lock Flowchart (English)"),
         ]},
       ],
     },
