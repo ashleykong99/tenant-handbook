@@ -389,10 +389,12 @@ CATEGORIES = [
     {
       "q": "How do I change the digital lock passcode?",
       "blocks": [
-        {"t": "First use the key to open the door. With the 【front door open】, follow the video and document below step by step. The initial passcode is 【1234#】."},
+        {"t": "First use the key to open the door. With the 【front door open】, follow the images below step by step. The initial passcode is 【1234#】."},
         {"media": [
-          V("10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F", "Digital lock setup video"),
-          P("19ld0-78T3KH2O7qqolz6wZoATfWT8N5C", "assets/cover-samsung-lock.png", "Samsung digital lock form"),
+          IMG("assets/lock-p6-en.png", "① Password and card registration"),
+          IMG("assets/lock-p7-en.png", "② Card management and security"),
+          IMG("assets/lock-p8-en.png", "③ Double authorization and locking"),
+          IMG("assets/lock-p9-en.png", "④ Product specifications"),
         ]},
       ],
     },

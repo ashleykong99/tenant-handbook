@@ -393,10 +393,12 @@ CATEGORIES = [
     {
       "q": "怎么更改密码锁？",
       "blocks": [
-        {"t": "先用钥匙开门，在【大门打开】的情况下，按照下面的视频和文件一步步完成。初始密码为【1234#】。"},
+        {"t": "先用钥匙开门，在【大门打开】的情况下，按照下面的图片一步步完成。初始密码为【1234#】。"},
         {"media": [
-          V("10q6Lu4rwoRRwhxUf3HQlqSS0yU2d8T1F", "电子密码设置教程"),
-          P("19ld0-78T3KH2O7qqolz6wZoATfWT8N5C", "assets/cover-samsung-lock.png", "Samsung 电子锁表单"),
+          IMG("assets/lock-p6-zh.png", "① 密码与卡片注册"),
+          IMG("assets/lock-p7-zh.png", "② 卡片管理与安全功能"),
+          IMG("assets/lock-p8-zh.png", "③ 双重认证与锁定"),
+          IMG("assets/lock-p9-zh.png", "④ 产品规格"),
         ]},
       ],
     },
