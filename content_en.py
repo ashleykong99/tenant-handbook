@@ -661,7 +661,7 @@ CATEGORIES = [
 {
   "id": "contract",
   "emoji": "📝",
-  "title": "Rental Agreements and Subletting",
+  "title": "Renewal & Subletting",
   "desc": "Renewals, adding a housemate and subletting",
   "questions": [
     {
@@ -679,9 +679,12 @@ CATEGORIES = [
     {
       "q": "I cannot continue my rental agreement due to circumstances beyond my control — what should I do?",
       "blocks": [
-        {"t": "You may find a replacement renter to take over the rental agreement. A transfer fee may apply, as specified in your rental agreement. Once a replacement renter has been confirmed, the fee may be paid separately or deducted from the bond after you move out."},
-        {"t": "You may advertise on online social media yourself, or ask us to advertise the property through channels such as realestate.com and Domain. The advertising fee is a one-off payment of $330, payable in advance to O REAL (BSB 733003, Acc 727393)."},
-        {"t": "Please note that paying the advertising fee does not guarantee that we will find a replacement renter. The outgoing renter remains responsible for rent and any related costs until the new rental agreement begins or the existing rental agreement otherwise legally ends."},
+        {"t": "There are two options:"},
+        {"list": [
+          "Find a replacement renter yourself. You will need to pay the transfer fee, which can be paid separately or deducted from the bond after you move out.",
+          "Ask us to find someone for you. In addition to the transfer fee, you will also need to pay a $330 advertising fee.",
+        ]},
+        {"t": "Please note that paying the advertising fee does not guarantee that we will find a replacement renter. The outgoing renter remains responsible for rent and any related costs until the new rental agreement begins."},
       ],
     },
     {
