@@ -456,8 +456,6 @@ CATEGORIES = [
         {"media": [
           V("12jejWAY8s244tBrLs312Jz1FsPUOPVoG", "Miele 洗碗机清洁"),
           V("1ZgCpZpMIQ81oaO9S1OPsiaf_rjucRzWT", "Miele 上层托盘调整"),
-          V("1-YJOd2ElwhrLuucDoVVnZKmg6Sk0BdyZ", "Fisher & Paykel 清洗"),
-          D("1A0CVc8c2OmZiQ_5wCKFCgSl3vcqO_RKaSXbunuWIoSE", "Fisher & Paykel 洗碗机不下水"),
           V("164lrzpDHoRzS9UkwIlzo3k6y0z7_vmUt", "上层供水管道掉落"),
           D("1qEuq0doK2qSCWKhv3YhA158wyZvyxaFPITm1IaIOpJs", "清理洗碗机"),
         ]},

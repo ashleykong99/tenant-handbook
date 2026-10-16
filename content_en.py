@@ -452,8 +452,6 @@ CATEGORIES = [
         {"media": [
           V("12jejWAY8s244tBrLs312Jz1FsPUOPVoG", "Miele dishwasher cleaning"),
           V("1ZgCpZpMIQ81oaO9S1OPsiaf_rjucRzWT", "Miele upper rack adjustment"),
-          V("1-YJOd2ElwhrLuucDoVVnZKmg6Sk0BdyZ", "Fisher & Paykel cleaning"),
-          D("1A0CVc8c2OmZiQ_5wCKFCgSl3vcqO_RKaSXbunuWIoSE", "Fisher & Paykel not draining"),
           V("164lrzpDHoRzS9UkwIlzo3k6y0z7_vmUt", "Upper water supply hose dropped"),
           D("1qEuq0doK2qSCWKhv3YhA158wyZvyxaFPITm1IaIOpJs", "Cleaning the dishwasher"),
         ]},
