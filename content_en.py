@@ -679,6 +679,7 @@ CATEGORIES = [
           "Ask us to find someone for you. In addition to the transfer fee, you will also need to pay a $330 advertising fee.",
         ]},
         {"t": "Please note that paying the advertising fee does not guarantee that we will find a replacement renter. The outgoing renter remains responsible for rent and any related costs until the new rental agreement begins."},
+        {"t": "You and the incoming renter will also need to sign a consent form to clarify responsibility for the condition of the property."},
       ],
     },
     {
@@ -701,7 +702,6 @@ CATEGORIES = [
         {"t": "Your Property Manager will send you a vacate guide containing the move-out instructions and information about 【booking end-of-lease cleaning】. We can recommend one of our preferred cleaning companies. Choosing the full cleaning service can reduce the need for repeated follow-up. Cleaning issues and defects are assessed separately. For example, a carpet stain that cannot be removed through cleaning is considered a defect and is not the cleaner's responsibility. You must return the property in a reasonably clean condition, taking into account its condition when you moved in. If professional cleaning or carpet steam cleaning is required under your rental agreement or in your circumstances, keep the receipt as evidence."},
         {"t": "After the 【end-of-lease cleaning】 has been completed, remember not to disconnect the electricity before moving out, otherwise we will be unable to inspect the property. You may disconnect the electricity yourself after 5 working days."},
         {"t": "We will complete the 【exit inspection】 within 5 working days and notify you of any issues with the property. If an issue relates to an item included in the cleaning service you purchased, the cleaner can return and clean it again at no additional charge. If the item was not included, you will need to clean it again or compensate for the defect."},
-        {"t": "You and the incoming renter will also need to sign a consent form to clarify responsibility for the condition of the property."},
         {"t": "Once all issues have been resolved, we will apply to release your bond held by the RTBA within 10 working days. When you receive an email from the RTBA, follow the link and enter your bank account details. You can then wait for the bond to be deposited into your account. This completes the move-out process."},
       ],
     },
